@@ -1,0 +1,14 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;700&display=swap');
+
+@tailwind base;
+@layer base{
+    html {
+    font-family: 'Overpass Mono';
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+}
+}
+@tailwind components;
+@tailwind utilities;
+
