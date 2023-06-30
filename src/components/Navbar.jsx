@@ -7,10 +7,9 @@ const Navbar = () => {
       <div className="navbar">
         <div className="flex-1">
         <div className="stat">
-    
-    <div className="stat-value font-overpass ml-8">Hola, Aylin</div>
-    <div className="stat-title font-medium ml-8">Veamos cómo te encuentras hoy</div>
-  </div>
+          <div className="stat-value font-overpass ml-8">Hola, Aylin</div>
+          <div className="stat-title font-medium ml-8">Veamos cómo te encuentras hoy</div>
+        </div>
         </div>
         <div className="flex-none gap-2">
           <div className="form-control ">
