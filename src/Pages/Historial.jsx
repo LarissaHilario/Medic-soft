@@ -1,21 +1,19 @@
 import Header from "../components/Header/Header";
 import Search from "../components/Search";
 import Table from "../components/Table";
-import Icon from "@mdi/react";
-import { mdiMagnify } from "@mdi/js";
 import Navbar from "../components/Navbar";
 import Drawer from "../components/Drawer";
 
 const Historial = () => {
     return (
         <>
-            <div className="flex w-full">
+            <div className="flex w-full overflow-hidden">
                 <div className="grid w-1flex-grow place-items-center">
                     <Drawer />
                 </div>
                 <div className="grid h-20 mt-10 flex-grow place-items-center">
                     <Navbar />
-                    <div className="flex w-full h-[825px]">
+                    <div className="flex w-full h-[51rem] ">
                         <div className="grid bg-neutral  artboard  artboard-horizontal w-full h-full">
                             <div className=" flex collapse-title text-4xl font-bold p-10 h-1 ">
                                 Historial
