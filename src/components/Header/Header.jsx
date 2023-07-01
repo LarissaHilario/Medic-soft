@@ -1,3 +1,5 @@
+import Informes from "../../Pages/Informes";
+import Register from "../../Pages/Register";
 import Drawer from "../Drawer";
 import Navbar from "../Navbar";
 
@@ -9,10 +11,6 @@ const Header = () => {
       <div className="flex w-full">
         <div className="grid w-1flex-grow place-items-center">
           <Drawer />
-        </div>
-        <div className="grid h-20 mt-5 flex-grow place-items-center">
-          <Navbar />
-         
         </div>
       </div>
     </>

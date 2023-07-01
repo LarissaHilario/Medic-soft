@@ -31,6 +31,10 @@ module.exports = {
                 fontFamily: {
                   'overpass': ['Overpass Mono', 'monospace', 'sans-serif'],
                 },
+               
+                    maxHeight: {
+                      '128': '48rem',
+                    }
               },
             }
           
