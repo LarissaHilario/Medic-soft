@@ -1,4 +1,4 @@
-import Informes from "../../Pages/Informes";
+import Informes from "../../Pages/Reports";
 import Register from "../../Pages/Register";
 import Drawer from "../Drawer";
 import Navbar from "../Navbar";

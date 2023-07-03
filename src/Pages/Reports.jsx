@@ -1,10 +1,13 @@
 import Header from "../components/Header/Header";
 import Search from "../components/Search";
 import Table from "../components/Table";
-import Navbar from "../components/Navbar";
+import Icon from '@mdi/react';
+import { mdiMagnify } from '@mdi/js';
+import TableInfo from "../components/TableInformes";
 import Drawer from "../components/Drawer";
+import Navbar from "../components/Navbar";
 
-const Historial = () => {
+const Reports = () => {
     return (
         <>
             <div className="flex w-full overflow-hidden">
@@ -16,7 +19,7 @@ const Historial = () => {
                     <div className="flex w-full h-[51rem] ">
                         <div className="grid bg-neutral  artboard  artboard-horizontal w-full h-full">
                             <div className=" flex collapse-title text-4xl font-bold p-10 h-1 ">
-                                Historial
+                                Informes semanales
                             </div>
                             <div className="-mt-[6rem]">
                             <div className="-mt-[8rem] ml-11">
@@ -31,20 +34,12 @@ const Historial = () => {
                                         <option disabled selected>
                                             Filtros
                                         </option>
-                                        <option>Temperatura</option>
                                         <option>Fecha</option>
-                                        <option>Ritmo cardiaco</option>
-                                        <option>Oxigenación</option>
                                     </select>
-                                </div>
-                                <div className="-mt-[3rem] ml-[45rem]">
-                                    <button className="btn btn-outline btn-primary">
-                                        Añadir registro
-                                    </button>
                                 </div>
                             </div>
                             <div className=" ml-9 mt-[-25rem] mr-4">
-                                <Table></Table>
+                                <TableInfo/>
                             </div>
                         </div>
                     </div>
@@ -54,4 +49,4 @@ const Historial = () => {
     );
 };
 
-export default Historial;
+export default Reports;

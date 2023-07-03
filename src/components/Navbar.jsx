@@ -12,7 +12,7 @@ const Navbar = () => {
         </div>
         </div>
         <div className="flex-none gap-2">
-          <div className="form-control ">
+          <div className="form-control -mt-3">
             <label className="swap swap-rotate">
               {/* this hidden checkbox controls the state */}
               <input type="checkbox" />
@@ -34,15 +34,16 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
-          <div className="dropdown dropdown-end">
-            <label
+          <div className="dropdown dropdown-end -mt-3">
+            <button
+            
               tabIndex={0}
-              className="btn btn-accent btn-ghost-accent btn-circle avatar"
+              className="btn btn-accent btn-ghost-accent btn-circle"
             >
-              <div className="w-30 avatar online">
-                <img src={avatar} />
+              <div className=" avatar online">
+                <img src={avatar}/>
               </div>
-            </label>
+            </button>
             <ul
               tabIndex={0}
               className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
