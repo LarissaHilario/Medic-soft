@@ -35,56 +35,6 @@ const SignUp = () => {
                           <img src={avatar} />
                         </button>
                       </div>
-                      <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
-                      <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
-                      <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
-                      <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
-                      <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
-                      <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
-                      <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
-                      <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
-                      <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
-                      <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
                     </div>
                   </div>
                   <div className="-mt-20 w-[40rem] flex justify-center">
@@ -122,11 +72,13 @@ const SignUp = () => {
               </div>
             </div>
           </div>
-          <div className="grid w-[30rem] flex-grow card place-items-center mr-[15rem]">
-            <img src={woman} className="mr-20"></img>
+          <div className="grid h-full flex-grow card place-items-center mr-[15rem] ">
+            <div className="w-[22rem] h-full mt-20 ">
+                <img src={woman} className=" "></img>
+            </div> 
           </div>
         </div>
-        <div className="-mt-[5.8rem]">
+        <div className="-mt-[11rem]">
           <img src={waves} className="w-[150rem] h-[18rem] z-40"></img>
         </div>
       </div>
