@@ -11,7 +11,7 @@ const SignUp = () => {
                     <img src={image} className=" w-100 h-30 "></img>
                 </div>
                 <div className="flex w-full">
-                    <div className="grid h-full w-[90%] flex-grow card place-items-center ">
+                    <div className="grid h-full w-full flex-grow card place-items-center ">
                         <div className='flex w-[60rem] h-[45rem] ml-20 flex justify-center '>
                             <div className="grid bg-neutral  artboard artboard-horizontal  ml-20 w-full h-full rounded-3xl">
 
@@ -115,13 +115,13 @@ const SignUp = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="grid w-[40%] flex-grow card place-items-center mr-20">
-                        <img src={woman} className='w-[80%] mr-20'>
+                    <div className="grid w-[30rem] flex-grow card place-items-center mr-20">
+                        <img src={woman} className='mr-20'>
                         </img>
                     </div>
                 </div>
-                <div className="-mt-[15rem]">
-                    <img src={waves} className="w-[1920px] h-[275px] z-[1]"></img>
+                <div className="-mt-[14rem]">
+                    <img src={waves} className="w-[150rem] h-[18rem] z-40"></img>
                 </div>
 
 
