@@ -10,10 +10,10 @@ const SignUp = () => {
         <div className="flex-col flex items-center  mt-5 object-center ">
           <img src={image} className=" w-100 h-30 "></img>
         </div>
-        <div className="flex w-full">
-          <div className="grid h-full w-full flex-grow card place-items-center mt-5 ">
+        <div className="flex w-full overflow-hidden">
+          <div className="grid h-full w-full flex-grow card place-items-center mt-5 overflow-hidden">
             <div className="flex w-[50rem] h-full ml-20 flex justify-center ">
-              <div className="grid bg-neutral artboard artboard-horizontal  ml-20 w-full h-full rounded-3xl">
+              <div className="grid bg-neutral artboard artboard-horizontal  ml-20 w-full rounded-3xl">
                 <div className="form-control w-full max-w-xs flex justify-center">
                   <label className="label mt-10 ml-10">
                     <span className="label-text-bold font-bold ">Selecciona un avatar</span>
