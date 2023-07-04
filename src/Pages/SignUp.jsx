@@ -12,8 +12,8 @@ const SignUp = () => {
                 </div>
                 <div className="flex w-full">
                     <div className="grid h-full w-full flex-grow card place-items-center ">
-                        <div className='flex w-[60rem] h-[45rem] ml-20 flex justify-center '>
-                            <div className="grid bg-neutral  artboard artboard-horizontal  ml-20 w-full h-full rounded-3xl">
+                        <div className='flex w-[60rem] md:w-[60rem] h-[20rem] md:h-[45rem] ml-20 flex justify-center '>
+                            <div className="grid bg-neutral artboard artboard-horizontal  ml-20 w-full h-full rounded-3xl">
 
                                 <div className="form-control w-full max-w-xs">
                                 <label className="label mt-10 ml-10">
