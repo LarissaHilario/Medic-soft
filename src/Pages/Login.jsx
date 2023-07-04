@@ -13,7 +13,7 @@ const Login = () => {
           <img src={image} className="w-100 h-30 "></img>
         </div>
         <div className="flex justify-center">
-        <div className="flex  gap-10 mt-[2rem] p-9 w-[42%] h-[390px] overflow-x-scroll">
+        <div className="flex  gap-8 mt-[2rem] p-9 w-[42%] h-[390px] no-scrollbar overflow-x-scroll">
           <div className="avatar ">
             <button className=" snap-center w-[221px] h-[221px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
               <img src={avatar}/>
