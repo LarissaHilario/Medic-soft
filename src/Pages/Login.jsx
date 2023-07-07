@@ -57,8 +57,8 @@ const Login = () => {
           </button>
         </div>
         </div>
-        <div className="overflow-hidden -mt-5">
-          <img src={wave} className=" mt-20  w-[1920px] h-[300px] "></img>
+        <div className="w-full py-52 overflow-hidden">
+          <img src={wave} className=" w-full"></img>
         </div>
 
       </div>
