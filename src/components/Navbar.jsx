@@ -36,7 +36,6 @@ const Navbar = () => {
           </div>
           <div className="dropdown dropdown-end -mt-3">
             <button
-            
               tabIndex={0}
               className="btn btn-accent btn-ghost-accent btn-circle"
             >

@@ -19,24 +19,20 @@ const SignUp = () => {
                     <span className="label-text-bold font-bold ">Selecciona un avatar</span>
                   </label>
                   <div className="flex justify-center w-[42rem]">
-                    <div className="flex gap-8 ml-[2rem] p-10 w-full h-[200px] no-scrollbar overflow-x-scroll">
+                  
+                    <div className="flex gap-8 ml-[2rem] p-5 w-full h-[200px] no-scrollbar overflow-x-scroll">
                       <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
-                      <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
-                      <div className="avatar ">
-                        <button className=" snap-center w-[80px] h-[80px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 ">
-                          <img src={avatar} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                      <input type="checkbox" id="react-option" value="" className="hidden peer" required="" />
+                      <label htmlFor="react-option" className="inline-flex items-center justify-center w-[80px] h-[80px] bg-neutral rounded-full cursor-pointer  peer-checked:scale-110 peer-checked:bg-primary peer-checked:transform transition duration-500 hover:scale-110 hover:bg-primary hover:transform transition duration-500">                           
+          
+                            <img src={avatar} />
+                        
+                      </label>
+
+</div>
+</div>
+</div>
+
                   <div className="-mt-20 w-[40rem] flex justify-center">
                     <div className="">
                       <div>
