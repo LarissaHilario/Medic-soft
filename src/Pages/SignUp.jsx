@@ -1,17 +1,30 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 import waves from "/waves.svg";
 import image from "/logo.png";
 import woman from "/woman.png";
-import avatar from "/avatar1.svg";
-import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const navigate= useNavigate()
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://192.168.100.195:9000/photos")
+      .then(({ data }) => {
+        console.log(data.message);
+        setPosts(data.message);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
-  const handleChange=()=>{
-    navigate('/login')
-  }
-    
+  const navigate = useNavigate();
 
+  const handleChange = () => {
+    navigate("/login");
+  };
   return (
     <>
       <div className="min-h-screen bg-base-100 overflow-hidden">
@@ -30,21 +43,21 @@ const SignUp = () => {
                   </label>
                   <div className="flex justify-center w-[42rem]">
                     <div className="flex gap-8 ml-[2rem] p-5 w-full h-[200px] no-scrollbar overflow-x-scroll">
-                      <div className="avatar ">
-                        <input
-                          type="checkbox"
-                          id="react-option"
-                          value=""
-                          className="hidden peer"
-                          required=""
-                        />
-                        <label
-                          htmlFor="react-option"
-                          className="inline-flex items-center justify-center w-[80px] h-[80px] bg-neutral rounded-full cursor-pointer  peer-checked:scale-110 peer-checked:bg-primary peer-checked:transform transition duration-500 hover:scale-110 hover:bg-primary hover:transform transition duration-500"
-                        >
-                          <img src={avatar} />
-                        </label>
-                      </div>
+                      {posts.map((post) => (
+                        <div className="avatar w-96 h-32" key={post.toString()}>
+                          <input
+                           id={post.id}
+                            type="checkbox"
+                            className="hidden peer"
+                            required="requered"
+                          />
+                          <label
+                            htmlFor={post.id}
+                            className="inline-flex items-center justify-center bg-neutral rounded-full cursor-pointer  peer-checked:scale-110 peer-checked:bg-primary peer-checked:transform transition duration-500 hover:scale-110 hover:bg-primary hover:transform transition duration-500">
+                            <img src={post.photoUrl} />
+                          </label>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
@@ -80,8 +93,11 @@ const SignUp = () => {
                           Crear Usuario
                         </button>
                         <div className="divider ml-10 w-full">O</div>
-                        <button className="btn btn-primary ml-10 mb-10 w-full max-w-md" onClick={handleChange}>
-                         Iniciar Sesión
+                        <button
+                          className="btn btn-primary ml-10 mb-10 w-full max-w-md"
+                          onClick={handleChange}
+                        >
+                          Iniciar Sesión
                         </button>
                       </div>
                     </div>
@@ -96,7 +112,7 @@ const SignUp = () => {
             </div>
           </div>
         </div>
-          <img src={waves} className="w-full -mt-[1.8rem]"></img>
+        <img src={waves} className="w-full -mt-[1.8rem]"></img>
       </div>
     </>
   );

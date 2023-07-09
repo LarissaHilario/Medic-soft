@@ -1,8 +1,6 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-import ReactPDF from '@react-pdf/renderer';
+import { Page, Text, Document } from '@react-pdf/renderer';
 
-import ReactDOM from "react-dom";
 
 
 
@@ -13,7 +11,8 @@ import ReactDOM from "react-dom";
 const MyDocument = () => (
   <Document >
     <Page>
-      <Text>Hello There</Text>
+      <Text>Paciente: Aylin Malpica</Text>
+      <Text>Periodo: 11/junio al 18 de junio de 2023</Text>
     </Page>
   </Document>
 );

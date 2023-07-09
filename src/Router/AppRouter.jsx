@@ -2,6 +2,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import DashBoardRoutes from './DashboardRouter';
+import SignUp from '../Pages/SignUp';
+import Login from '../Pages/Login';
+import PublicRoutes from './PublicRoutes';
+//import PrivateRoutes from './PrivateRouter';
 
 
 const AppRouter = () => {
@@ -11,12 +15,30 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
        
+      {}
+        <Route
+          path='/login'
+          element={
+            <PublicRoutes>
+              <Login/>
+            
+            </PublicRoutes>
+          }
+        />
+         <Route
+          path='/CrearCuenta'
+          element={
+            <PublicRoutes>
+              <SignUp/>
+            </PublicRoutes>
+          }
+        />
         <Route
           path='/*'
           element={
-           
-              <DashBoardRoutes />
-            
+               <PublicRoutes>
+                <DashBoardRoutes />
+               </PublicRoutes>
           }
         />
       </Routes>

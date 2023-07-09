@@ -4,31 +4,52 @@ import avatar from "/avatar1.svg"
 import { useNavigate } from "react-router-dom";
 import Icon from '@mdi/react';
 import { mdiPlus } from '@mdi/js';
-
-
+import { axiosInstance } from '../Helpers/AxiosInstance';
+import { useEffect, useState } from "react";
 
 const Login = () => {
+
+const [users, setUsers]= useState([])
+
 const navigate= useNavigate()
 const submit=()=>{
   navigate('/crearCuenta')
 }
+
+useEffect(() => {
+  axiosInstance 
+  .get('http://192.168.100.195:9000/users')
+    .then(({ data }) => {
+      console.log(data.message);
+      setUsers(data.message);
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+}, []);
+
+
   return (
     <>
+      
       <div className="min-h-screen bg-base-100 overflow-hidden">
         <div className="flex-col flex items-center  mt-5 object-center ">
           <img src={image} className="w-100 h-30 "></img>
         </div>
         <div className="flex justify-center">
+      
+         
           <div className="flex  gap-8 mt-[2rem] p-9 w-[42%] h-[390px] no-scrollbar overflow-x-scroll">
+          {users.map(user => (
             <div className="avatar ">
               <button htmlFor="login" onClick={() => window.login.showModal()} className=" snap-center w-[221px] h-[221px] bg-neutral rounded-full btn-outline btn-primary transform transition duration-500 hover:scale-110 " >
-                <img src={avatar} />
+                <img src={user.photoUrl} />
                 <div>
-                  <label className="font-bold text-4xl p-10">Aylin</label>
+                  <label className="font-bold text-4xl p-10">{user.name}</label>
                 </div>
               </button>
-            </div>
-
+            </div>  
+))}
             <dialog id="login" className="modal">
               <form method="dialog" className="modal-box">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -37,7 +58,7 @@ const submit=()=>{
                 </div>
                 <div className="avatar flex justify-center ">
                   <button className="snap-center w-[190px] h-[190px] bg-base-100 rounded-full  " disabled="disabled">
-                    <img src={avatar} />
+                    <img src={avatar}  className="w-[190px] h-1/4"/>
                     <div>
                       <label className="font-bold text-4xl p-10 text-primary">Aylin</label>
                     </div>
@@ -65,7 +86,9 @@ const submit=()=>{
                 <button>close</button>
               </form>
             </dialog>
+            
           </div>
+          
 
           <div className="flex justify-center ml-5 mt-[4.5rem]">
             <button className="w-[221px] h-[221px]  rounded-full btn-primary transform transition duration-500 hover:scale-110 " onClick={submit}>
@@ -73,7 +96,7 @@ const submit=()=>{
             </button>
           </div>
         </div>
-
+       
         <div className="w-full pt-[13.3rem]  overflow-hidden">
           <img src={wave} className=" w-full h-full"></img>
         </div>
