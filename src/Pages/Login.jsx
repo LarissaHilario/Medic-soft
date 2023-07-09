@@ -1,11 +1,17 @@
 import image from "/logo.png";
 import wave from "/waves.svg"
 import avatar from "/avatar1.svg"
-
+import { useNavigate } from "react-router-dom";
 import Icon from '@mdi/react';
 import { mdiPlus } from '@mdi/js';
 
+
+
 const Login = () => {
+const navigate= useNavigate()
+const submit=()=>{
+  navigate('/crearCuenta')
+}
   return (
     <>
       <div className="min-h-screen bg-base-100 overflow-hidden">
@@ -62,14 +68,14 @@ const Login = () => {
           </div>
 
           <div className="flex justify-center ml-5 mt-[4.5rem]">
-            <button className="w-[221px] h-[221px]  rounded-full btn-primary transform transition duration-500 hover:scale-110">
+            <button className="w-[221px] h-[221px]  rounded-full btn-primary transform transition duration-500 hover:scale-110 " onClick={submit}>
               <Icon path={mdiPlus} size={9} />
             </button>
           </div>
         </div>
 
-        <div className="w-full  overflow-hidden">
-          <img src={wave} className=" w-full"></img>
+        <div className="w-full pt-[13.3rem]  overflow-hidden">
+          <img src={wave} className=" w-full h-full"></img>
         </div>
       </div>
 

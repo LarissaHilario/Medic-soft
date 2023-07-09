@@ -2,8 +2,16 @@ import waves from "/waves.svg";
 import image from "/logo.png";
 import woman from "/woman.png";
 import avatar from "/avatar1.svg";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate= useNavigate()
+
+  const handleChange=()=>{
+    navigate('/login')
+  }
+    
+
   return (
     <>
       <div className="min-h-screen bg-base-100 overflow-hidden">
@@ -68,8 +76,12 @@ const SignUp = () => {
                         />
                       </div>
                       <div>
-                        <button className="btn btn-primary ml-10 mt-10 mb-10 w-full max-w-md">
+                        <button className="btn btn-primary ml-10 mt-10  w-full max-w-md">
                           Crear Usuario
+                        </button>
+                        <div className="divider ml-10 w-full">O</div>
+                        <button className="btn btn-primary ml-10 mb-10 w-full max-w-md" onClick={handleChange}>
+                         Iniciar Sesión
                         </button>
                       </div>
                     </div>
@@ -84,9 +96,7 @@ const SignUp = () => {
             </div>
           </div>
         </div>
-        <div className=" ">
-          <img src={waves} className="w-full py-0 overflow-hidden"></img>
-        </div>
+          <img src={waves} className="w-full -mt-[1.8rem]"></img>
       </div>
     </>
   );

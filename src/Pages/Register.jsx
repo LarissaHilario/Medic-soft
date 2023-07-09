@@ -25,12 +25,12 @@ const Register = () => {
               <div className=" flex collapse-title text-4xl font-bold p-10 h-1 ">
                 Registro de signos vitales
               </div>
-              <div className=" flex text-xl font-medium p-10 -mt-[8rem] h-1 ">
+              <div className=" flex text-xl font-medium p-10 -mt-[2rem] h-1 ">
                 Por favor, conecta los sensores para empezar a monitorear tu signos vitales
               </div>
              
               <div className="flex w-full">
-                <div className="grid -ml-[15rem] -mt-[10rem] flex-grow  place-items-center">
+                <div className="grid -ml-[15rem] mt-[1rem] flex-grow  place-items-center">
                   <div className="form-control w-full max-w-xs flex justify-center">
                     <div className="pb-5">
                        <label className="label ">
@@ -92,11 +92,16 @@ const Register = () => {
                       className=" mt-1 ml-12 input input-bordered input-primary  w-[22rem] max-w-md"
                     />
                     </div>
+                    <div className="pb-5 pt-5 ml-12 w-[22rem]">
+                    <button type="submit" className="btn btn-primary w-full max-w-">
+                      Guardar datos
+                    </button>
+                    </div>
                   </div>
                 </div>
                 <div className="grid -mt-[10rem] flex-grow place-items-center">
               
-                      
+                
                     <div className="flex justify-center items-center -mr-[15rem] bg-base-100  artboard  artboard-horizontal w-[35rem] h-[33rem] rounded-2xl">
                         <LineChart/>
                     </div>
