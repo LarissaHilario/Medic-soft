@@ -38,7 +38,7 @@ const Reports = () => {
                                     </select>
                                 </div>
                             </div>
-                            <div className=" ml-9 mt-[-25rem] mr-4">
+                            <div className=" ml-9 mt-[-25rem] mr-4 ">
                                 <TableInfo/>
                             </div>
                         </div>
