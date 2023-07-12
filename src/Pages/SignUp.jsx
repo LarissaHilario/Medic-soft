@@ -1,16 +1,41 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
+import {axiosInstance}  from "../Helpers/AxiosInstance";
 import waves from "/waves.svg";
 import image from "/logo.png";
 import woman from "/woman.png";
+import Loader from "../components/Loader";
+
 
 const SignUp = () => {
+  const [loading, setLoading] = useState (false)
+  const [state, setState] = useState({
+    name: "",
+    password: "",
+    lastname: "",
+  });
+
+  const [avatar, setAvatar] = useState()
+
+  const onOptionChange = e => {
+    setAvatar(e.target.value)
+    console.log(e.target.value)
+  }
+
+  const handleChangeValue = (e) => {
+    const value = e.target.value;
+    setState({
+      ...state,
+      [e.target.name]: value,
+      [e.target.lastname]: value,
+    });
+  };
+
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    axios
-      .get("http://192.168.100.195:9000/photos")
+    axiosInstance
+      .get("photos")
       .then(({ data }) => {
         console.log(data.message);
         setPosts(data.message);
@@ -19,12 +44,46 @@ const SignUp = () => {
         console.log(err.message);
       });
   }, []);
-
   const navigate = useNavigate();
 
   const handleChange = () => {
     navigate("/login");
   };
+
+  
+  const handleSubmit = async (e) => {
+    try {
+      setLoading(true);
+     {if (loading === true) (
+      <LoadingSpinner /> 
+     )}
+    e.preventDefault();
+    const userData = {
+      name: state.name,
+      password: state.password,
+      lastname: state.lastname,
+      photoUrl: avatar
+    };
+    console.log(userData)
+    await axiosInstance
+      .post("create",userData
+      )
+      .then((resp) => {     
+        const { data } = resp;
+        console.log(data)
+        navigate('/login')
+      }) 
+      .catch(({ response }) => {
+        console.log(response.data.message);
+      });
+      
+  }
+  finally{
+    setLoading(false);
+  }
+}
+
+
   return (
     <>
       <div className="min-h-screen bg-base-100 overflow-hidden">
@@ -42,21 +101,25 @@ const SignUp = () => {
                     </span>
                   </label>
                   <div className="flex justify-center w-[42rem]">
-                    <div className="flex gap-8 ml-[2rem] p-5 w-full h-[200px] no-scrollbar overflow-x-scroll">
+                 
+                    <div className="flex gap-8 ml-[3rem] p-5 w-full h-[200px] no-scrollbar overflow-x-scroll">
                       {posts.map((post) => (
-                        <div className="avatar w-96 h-32" key={post.toString()}>
-                          <input
-                           id={post.id}
-                            type="checkbox"
+                       <div key={post.toString()}>
+                        <input
+                            id={post.id}
+                            type="radio"
                             className="hidden peer"
-                            required="requered"
+                            name="avatar"
+                            required
+                            value={post.photoUrl}
+                            onChange={onOptionChange}
                           />
                           <label
                             htmlFor={post.id}
-                            className="inline-flex items-center justify-center bg-neutral rounded-full cursor-pointer  peer-checked:scale-110 peer-checked:bg-primary peer-checked:transform transition duration-500 hover:scale-110 hover:bg-primary hover:transform transition duration-500">
-                            <img src={post.photoUrl} />
+                            className="inline-flex items-center justify-center bg-accent rounded-full w-28 h-28 cursor-pointer  peer-checked:scale-110 peer-checked:bg-primary peer-checked:transform transition duration-500 hover:scale-110 hover:bg-primary hover:transform transition duration-500">
+                            <img src={post.photoUrl} className="h-28"/>
                           </label>
-                        </div>
+                       </div>
                       ))}
                     </div>
                   </div>
@@ -71,10 +134,31 @@ const SignUp = () => {
                         </label>
                         <input
                           type="text"
+                          name="name"
                           placeholder="Escribe aquí"
                           className=" mt-1 ml-10 input input-bordered w-full max-w-md"
+                          required
+                          value={state.name}
+                          onChange={handleChangeValue}
                         />
                       </div>
+                      <div>
+                        <label className="label mt-4 ml-10">
+                          <span className="label-text-bold font-bold ">
+                            Apellido
+                          </span>
+                        </label>
+                        <input
+                          name="lastname"
+                          type="text"
+                          
+                          placeholder="Escribe aquí"
+                          className=" mt-1 ml-10 input input-bordered w-full max-w-md"
+                          value={state.lastname}
+                          onChange={handleChangeValue}
+                        />
+                      </div>
+                      <div></div>
 
                       <div>
                         <label className="label mt-4 ml-10">
@@ -83,15 +167,20 @@ const SignUp = () => {
                           </span>
                         </label>
                         <input
-                          type="text"
+                          name="password"
+                          type="password"
+                          required
                           placeholder="Escribe aquí"
                           className=" mt-1 ml-10 input input-bordered w-full max-w-md"
+                          value={state.password}
+                          onChange={handleChangeValue}
                         />
                       </div>
                       <div>
-                        <button className="btn btn-primary ml-10 mt-10  w-full max-w-md">
+                        <button className="btn btn-primary ml-10 mt-10  w-full max-w-md" onClick={handleSubmit }>
                           Crear Usuario
                         </button>
+                        
                         <div className="divider ml-10 w-full">O</div>
                         <button
                           className="btn btn-primary ml-10 mb-10 w-full max-w-md"

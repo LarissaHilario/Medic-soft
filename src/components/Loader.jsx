@@ -1,4 +1,4 @@
-export const Loader = () => {
+const Loader = () => {
   return (
     <div class="loading">
       <svg width="16px" height="12px">
@@ -8,3 +8,5 @@ export const Loader = () => {
     </div>
   );
 };
+
+export default Loader

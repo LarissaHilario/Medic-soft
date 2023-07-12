@@ -10,6 +10,7 @@ export const authSlice = createSlice({
     login: (state, action) => {
       state.token = action.payload.token;
       state.isAuthenticathed = true;
+      
     },
     logout: (state /* action */) => {
       localStorage.removeItem('token');

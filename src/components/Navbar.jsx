@@ -1,16 +1,48 @@
+import { useDispatch, useSelector } from "react-redux";
 import Drawer from "./Drawer";
 import avatar from "/avatar1.svg";
+import { logout } from "../Store/Slices/authSlice";
+import { deleteToken } from "../Helpers/auth";
+import { axiosInstancia } from "../Helpers/AxiosInstancia";
+import { useEffect, useState } from "react";
+import { cleanUsers } from "../Store/Slices/usersSlice";
+import { cleanData } from "../Store/Slices/lastData";
+import { cleanAllData } from "../Store/Slices/allDataSlice";
+import { cleanTemp } from "../Store/Slices/WeeksTemperatureSlice";
 
 const Navbar = () => {
+  const dispatch= useDispatch()
+  const user = useSelector(state=>state.user)
+  const name= localStorage.getItem('nombre')
+  const photo=localStorage.getItem('photo')
+  
+  const handleLogout = () => {
+    dispatch(logout());
+    deleteToken();
+    dispatch(cleanUsers())
+    dispatch(cleanData())
+    dispatch(cleanAllData())
+    dispatch(cleanTemp())
+  };
+
+  
+
   return (
     <>
       <div className="navbar">
         <div className="flex-1">
         <div className="stat">
-          <div className="stat-value font-overpass ml-2">Hola, Aylin</div>
-          <div className="stat-title font-medium ml-2">Veamos cómo te encuentras hoy</div>
+      
+          <div>
+             <div className="stat-value font-overpass ml-2">Hola {name}</div>
+          <div className="stat-title font-medium ml-2">Veamos cómo te encuentras hoy</div> 
+          </div>
+         
+       
+        </div> 
+       
         </div>
-        </div>
+       
         <div className="flex-none gap-2">
           <div className="form-control -mt-3">
             <label className="swap swap-rotate">
@@ -40,7 +72,7 @@ const Navbar = () => {
               className="btn btn-accent btn-ghost-accent btn-circle"
             >
               <div className=" avatar online">
-                <img src={avatar}/>
+                <img src={photo}/>
               </div>
             </button>
             <ul
@@ -48,10 +80,7 @@ const Navbar = () => {
               className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">Perfil</a>
-              </li>
-              <li>
-                <a>Cerrar sesión</a>
+                <a onClick={handleLogout}>Cerrar sesión</a>
               </li>
             </ul>
           </div>

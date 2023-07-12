@@ -1,44 +1,44 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
-import DashBoardRoutes from './DashboardRouter';
-import SignUp from '../Pages/SignUp';
-import Login from '../Pages/Login';
-import PublicRoutes from './PublicRoutes';
-//import PrivateRoutes from './PrivateRouter';
-
+import DashBoardRoutes from "./DashboardRouter";
+import SignUp from "../Pages/SignUp";
+import Login from "../Pages/Login";
+import PublicRoutes from "./PublicRoutes";
+import { useDispatch, useSelector } from "react-redux";
+//import { chargingUsers } from "../Store/Thunk/userThunk";
+import { useEffect } from "react";
+import PrivateRoutes from "./PrivateRouter";
 
 const AppRouter = () => {
 
-
+  const authState = useSelector(state => state.authState);
+  useEffect(() => {}, [authState]);
+  
   return (
     <BrowserRouter>
       <Routes>
-       
-      {}
         <Route
-          path='/login'
+          path="/login"
           element={
             <PublicRoutes>
               <Login/>
-            
-            </PublicRoutes>
-          }
-        />
-         <Route
-          path='/CrearCuenta'
-          element={
-            <PublicRoutes>
-              <SignUp/>
             </PublicRoutes>
           }
         />
         <Route
-          path='/*'
+          path="/CrearCuenta"
           element={
-               <PublicRoutes>
-                <DashBoardRoutes />
-               </PublicRoutes>
+            <PublicRoutes>
+              <SignUp />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/*"
+          element={
+            <PrivateRoutes>
+              <DashBoardRoutes/>
+            </PrivateRoutes>
           }
         />
       </Routes>
