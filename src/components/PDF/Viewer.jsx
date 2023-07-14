@@ -5,7 +5,7 @@ import MyDocument from "./Document";
 function Viewer() {
   return (
     <PDFViewer className="viewer" width='1920px' height='929px' >
-      <MyDocument />
+      <MyDocument/>
     </PDFViewer>
   )
 }

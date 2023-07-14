@@ -3,8 +3,15 @@ import Search from "../components/Search";
 import Table from "../components/Table";
 import Navbar from "../components/Navbar";
 import Drawer from "../components/Drawer";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Historial = () => {
+    const navigate = useNavigate()
+
+    const handleNavigate =()=>{
+       
+        navigate('/registro')
+    }
     return (
         <>
             <div className="flex w-full overflow-hidden">
@@ -38,7 +45,7 @@ const Historial = () => {
                                     </select>
                                 </div>
                                 <div className="-mt-[3rem] ml-[45rem]">
-                                    <button className="btn btn-outline btn-primary">
+                                    <button className="btn btn-outline btn-primary" onClick={handleNavigate}>
                                         Añadir registro
                                     </button>
                                 </div>

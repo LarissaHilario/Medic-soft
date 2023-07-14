@@ -3,7 +3,8 @@ import Sensor from "./Report/InfoPorSensor";
 import StadisticsData from "./Report/StadisticsData";
 import Table from "./Report/Table";
 import BarChart from "./grphics/BarChart";
-
+import LineChart from '../components/grphics/LineChart'
+import BubbleChart from '../components/grphics/BubbleChart'
 import { PDFViewer } from '@react-pdf/renderer';
 
 
@@ -15,6 +16,8 @@ const TableInfo = () => {
     navigate('/document')
 
   }
+  const name = localStorage.getItem('nombre')
+  const lastname=localStorage.getItem('apellido')
   return (
     <div className="overflow-y-auto h-full">
       <table className="table bg-base-100 top-10 items-center text-center ">
@@ -43,18 +46,25 @@ const TableInfo = () => {
               <dialog id="my_modal_1" className="modal overflow-y-auto">
                 <form method="dialog" className="bg-base-100 rounded-lg p-5 ">
                   <h3 className="font-black text-2xl pt-5 text-primary eading-loose">
-                    Paciente: Aylin Malpica
+                    Paciente: {name} {lastname}
                   </h3>
                   <div className="pt-4 pb-4">
                     <label className="px-11 text-lg">Periodo: 14/06/2023</label>
                   </div>
-                 <Sensor/>
+                 <Sensor
+                 type={'Temperatura'}
+                 graphic={<BarChart/>}/>
                  <div className="pt-[8rem]">
-                   <Sensor/>
+                   <Sensor
+                   type={'Ritmo Cardiaco'}
+                   graphic={<LineChart></LineChart>}/>
                  </div>
                 
                  <div className="pt-[8rem]">
-                   <Sensor/>
+                   <Sensor
+                   type={'Oxigenación'}
+                   graphic={<BubbleChart/>}
+                   />
                  </div>
 
                   <div className="modal-action">

@@ -4,18 +4,23 @@ import StadisticsData from "./StadisticsData";
 import Table from "./Table";
 
 
-const Sensor =()=>{
+const Sensor =({type, graphic})=>{
     return(
         <>
-        <div className="divider bg-blue-100 h-1 "> Temperatura</div>
+        <div className="divider">
+        <div className="font-overpass text-lg text-primary">
+          {type}
+        </div>
+         
+          </div>
                   <Table />
                   <div className="pb-10">
                     <div className="card w-[29rem] mt-1 bg-base-100 shadow-xl">
                       <div className="card-body">
-                        <h2 className="card-title">Temperatura</h2>
+                        <h2 className="card-title">{type}</h2>
                       </div>
                       <figure>
-                        <BarChart />
+                        {graphic}
                       </figure>
                     </div>
                   </div>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import {axiosInstance}  from "../Helpers/AxiosInstance";
 import waves from "/waves.svg";
 import image from "/logo.png";
-import woman from "/woman.png";
+import woman from "/doctor.png";
 import Loader from "../components/Loader";
 
 
@@ -52,11 +52,7 @@ const SignUp = () => {
 
   
   const handleSubmit = async (e) => {
-    try {
-      setLoading(true);
-     {if (loading === true) (
-      <LoadingSpinner /> 
-     )}
+    
     e.preventDefault();
     const userData = {
       name: state.name,
@@ -78,10 +74,8 @@ const SignUp = () => {
       });
       
   }
-  finally{
-    setLoading(false);
-  }
-}
+ 
+
 
 
   return (
@@ -93,7 +87,7 @@ const SignUp = () => {
         <div className="flex w-full py-0">
           <div className="grid h-full w-full flex-grow card place-items-center mt-5 ">
             <div className="flex w-[50rem] h-full ml-20 flex justify-center ">
-              <div className="grid bg-neutral artboard artboard-horizontal  ml-20 w-full rounded-3xl">
+              <div className="grid bg-neutral artboard artboard-horizontal w-full rounded-3xl">
                 <div className="form-control w-full max-w-xs flex justify-center">
                   <label className="label mt-10 ml-10">
                     <span className="label-text-bold font-bold ">
@@ -124,7 +118,7 @@ const SignUp = () => {
                     </div>
                   </div>
 
-                  <div className="-mt-20 w-[40rem] flex justify-center">
+                  <div className="-mt-20 w-[45rem] flex justify-center ">
                     <div className="">
                       <div>
                         <label className="label mt-10 ml-10">
@@ -196,12 +190,12 @@ const SignUp = () => {
             </div>
           </div>
           <div className="grid h-full flex-grow card place-items-center mr-[15rem] ">
-            <div className="w-[22rem] h-full py-8 ">
-              <img src={woman} className=" "></img>
+            <div className="w-[25rem]  py-32 ">
+              <img src={woman} className=" " width='390px'></img>
             </div>
           </div>
         </div>
-        <img src={waves} className="w-full -mt-[1.8rem]"></img>
+        <img src={waves} className="w-full -mt-[8.55rem]"></img>
       </div>
     </>
   );

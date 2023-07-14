@@ -3,9 +3,8 @@ import * as React from "react";
 import { useState } from "react";
 import Drawer from "../components/Drawer";
 import Navbar from "../components/Navbar";
-import LineChart from "../components/progressiveLine";
-import Line from "../components/Line";
-import Lines from "../components/Line";
+
+import Electro from "../components/progressiveLine";
 //import {loader} from '../components/Loader'
 
 const Register = () => {
@@ -30,7 +29,7 @@ const Register = () => {
               </div>
              
               <div className="flex w-full">
-                <div className="grid -ml-[15rem] mt-[1rem] flex-grow  place-items-center">
+                <div className="grid  flex-grow  place-items-center">
                   <div className="form-control w-full max-w-xs flex justify-center">
                     <div className="pb-5">
                        <label className="label ">
@@ -99,11 +98,11 @@ const Register = () => {
                     </div>
                   </div>
                 </div>
-                <div className="grid -mt-[10rem] flex-grow place-items-center">
+                <div className="grid  flex-grow place-items-center">
               
                 
-                    <div className="flex justify-center items-center -mr-[15rem] bg-base-100  artboard  artboard-horizontal w-[35rem] h-[33rem] rounded-2xl">
-                        <LineChart/>
+                    <div className="flex justify-center items-center bg-base-100  artboard  artboard-horizontal w-[60rem] h-[40rem] rounded-2xl">
+                        <Electro></Electro>
                     </div>
                  
                 </div>

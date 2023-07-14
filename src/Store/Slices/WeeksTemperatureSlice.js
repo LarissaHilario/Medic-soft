@@ -3,14 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 export const weeklyTempSlice = createSlice({
   name: 'weeklyTemp',
   initialState: {
-    weeklyTemp:null,
+    weeklyTemp:[],
   },
   reducers: {
     addTemp: (state, action) => {
-      state.weeklyTemp = action.payload.data
+      state.weeklyTemp = action.payload
     },
     cleanTemp: state => {
-      state.weeklyTemp = null;
+      state.weeklyTemp = [];
     },
    
   },

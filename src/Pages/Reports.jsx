@@ -6,7 +6,7 @@ import { mdiMagnify } from '@mdi/js';
 import TableInfo from "../components/TableInformes";
 import Drawer from "../components/Drawer";
 import Navbar from "../components/Navbar";
-
+import PropTypes from 'prop-types'
 const Reports = () => {
     return (
         <>

@@ -18,6 +18,7 @@ const DashBoardRoutes = () => {
   const user = useSelector((state) => state.user);
   const lastData = useSelector((state) => state.lastData);
   const allData=useSelector((state)=>state.allData)
+  const weeklyTemp=useSelector((state)=>state.weeklyTemp)
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,6 +29,7 @@ const DashBoardRoutes = () => {
         await dispatch(chargingData());
         await dispatch(chargingAllData());
         await dispatch(chargingWeelyTemp());
+        
         setIsLoading(false);
       } catch (error) {
         console.log(error);

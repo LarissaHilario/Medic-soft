@@ -112,11 +112,11 @@ console.log(id)
           <div className="flex  gap-8 mt-[2rem] p-9 w-[42%] h-[390px] no-scrollbar overflow-x-scroll">
           {users.map( (user) => (
             
-             <div className="avatar" key={user.id}>
+             <div className="" key={user.id}>
              <input
                  id={user.id}
                  type="radio"
-                 className="hidden peer"
+                 className="hidden peer "
                  name="avatar"
                  required
                  value={user.id}
@@ -126,19 +126,19 @@ console.log(id)
                <label
                  htmlFor={user.id}
                  className=" snap-center w-[221px] h-[221px] inline-flex bg-neutral rounded-full cursor-pointer  peer-checked:scale-110 peer-checked:bg-primary peer-checked:transform transition duration-500 hover:scale-110 hover:bg-primary hover:transform transition duration-500">
-                  <img src={user.photoUrl} className="h-[221px]"/>
-                  <label className="font-bold text-4xl pt-52 flex justify-center items-center">{user.name}</label>
+                  <img src={user.photoUrl} className=""/>
+                  <label className="font-bold text-4xl  pt-64 -ml-[10rem] flex justify-center items-center">{user.name}</label>
                </label>
             </div>))}
             <dialog id="login" className="modal" >
               <form method="dialog" className="modal-box">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                 <div className="flex-col flex items-center  mt-2 object-center ">
-                  <img src={image} className="w-60 h-30 "></img>
+                  <img src={image} className="w-60 h-30 flex justify-center "></img>
                 </div>
-                <div className=" avatar flex  justify-center">
-                  <button className="snap-center w-[190px] h-[190px] bg-base-100 rounded-full  " disabled="disabled">
-                    <img src={posts.photoUrl} className="w-[190px] h-1/4" />
+                <div className=" avatar flex  justify-center ">
+                  <button className="snap-center  w=[210px] h-[250px] bg-base-100 rounded-full  " disabled="disabled">
+                    <img src={posts.photoUrl} width='210px' height='230px'/>
                     <div>
                       <label className="font-bold text-4xl p-10 text-primary" 
                        value={posts.id}
@@ -157,13 +157,13 @@ console.log(id)
                           type="password"
                           required
                           placeholder="Escribe aquí"
-                          className=" mt-1 ml-10 input input-bordered w-full max-w-md"
+                          className=" mt-1 ml-11 input input-bordered w-[22rem]  max-w-md"
                           value={state.password}
                           onChange={handleChange}
                         />
                   </div>
                   <div className="z-10">
-                    <button type="submit"  onClick={handleSubmit } className="btn btn-primary ml-12 mt-10 mb-10 w-3/4 max-w-md">
+                    <button type="submit"  onClick={handleSubmit} className="btn btn-primary ml-12 mt-10 mb-10 w-3/4 max-w-md">
                       Iniciar Sesión
                     </button>
                   </div>
