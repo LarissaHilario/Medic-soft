@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const historySlice = createSlice({
-  name: 'lastData',
+  name: 'history',
   initialState: {
-    lastData:null,
+    history:[],
   },
   reducers: {
     addData: (state, action) => {
-      state.lastData = action.payload
+      state.history = action.payload
     },
-    cleanData: state => {
-      state.lastData = null;
+    cleanHistory: state => {
+      state.history = [];
     },
    
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addData, cleanData } = lastDataSlice.actions;
+export const { addData, cleanHistory } = historySlice.actions;

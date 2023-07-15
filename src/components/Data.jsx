@@ -12,8 +12,8 @@ const Data =()=>{
   const lastData = useSelector((state) => state.lastData.lastData);
   console.log(lastData)
   if (!lastData) {
-    return ( <div className="card w-[50.5rem] bg-base-100 shadow-xl">
-    <div className="card-body">
+    return ( <div className="card w-[59rem] bg-base-100 shadow-xl">
+    <div className="card-body w-[59rem]">
       <h2 className="card-title">Tus últimos datos</h2>
       <div className="stats shadow">
         <div className="stat overflow-hidden">
@@ -53,7 +53,7 @@ const Data =()=>{
 
 
     return(
-        <div className="card w-[50.5rem] bg-base-100 shadow-xl">
+        <div className="card w-[59rem] bg-base-100 shadow-xl">
                   <div className="card-body">
                     <h2 className="card-title">Tus últimos datos</h2>
                     <div className="stats shadow">

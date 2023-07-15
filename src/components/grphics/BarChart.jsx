@@ -34,7 +34,7 @@ const BarChart = () => {
   
   return (
     <div>
-      <Bar options={options} data={data} width='400px' height='250px' />
+      <Bar options={options} data={data} width='400px' height='470px' />
     </div>
   );
 };

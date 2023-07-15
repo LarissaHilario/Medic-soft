@@ -1,13 +1,15 @@
-import Data from "./Data"
 import Icon from "@mdi/react";
 import { mdiThermometer } from "@mdi/js";
 import { mdiHeartPulse } from "@mdi/js";
 import { mdiChartBubble } from "@mdi/js";
+import { useSelector } from "react-redux";
 
-const Table = () => {
+const Table = ({data}) => {
+
+ 
   return (
-    <div className="overflow-x-auto h-full">
-      <table className="table bg-base-100 top-10 items-center text-center  ">
+    <div className="overflow-x-auto p-10">
+      <table className="table bg-base-100 top-1 items-center text-center  ">
         {/* head */}
         <thead>
           <tr>
@@ -21,20 +23,20 @@ const Table = () => {
         </thead>
         <tbody>
           {/* row 1 */}
-          <tr>
+          {data.map(row => (
+  
+          <tr key={row.id}>
             <th>
-              <div className="font-bold">Junio 14, 2023</div>
-
-              <div className="text-sm opacity-50">Hace 12 días</div>
+              <div className="font-bold">{row.date}</div>
             </th>
             <td>
               <div>
-                <div className="font-bold text-center">15:30</div>
+                <div className="font-bold text-center">{row.time}</div>
               </div>
             </td>
-            <td>23°</td>
-            <td>450</td>
-            <td>300</td>
+            <td>{row.temperature}</td>
+            <td>{row.oxygen}</td>
+            <td>{row.pulse}</td>
             <th>
               <button className="btn btn-ghost btn-xs" onClick={() => window.my_modal_1.showModal()}>Detalles</button>
               <dialog id="my_modal_1" className="modal">
@@ -82,7 +84,8 @@ const Table = () => {
                 </form>
               </dialog>
             </th>
-          </tr>
+          </tr>))}
+          
         </tbody>
       </table>
     </div>

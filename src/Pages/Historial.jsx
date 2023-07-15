@@ -4,13 +4,60 @@ import Table from "../components/Table";
 import Navbar from "../components/Navbar";
 import Drawer from "../components/Drawer";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const Historial = () => {
+    const [cards, setCards]= useState([])
     const navigate = useNavigate()
-
+    const [filter, setFilter] = useState('default');
+    const history = useSelector((state)=> state.history.history.history.history)
+    console.log(history)
     const handleNavigate =()=>{
-       
         navigate('/registro')
+    }
+    const handleChange = e => {
+        setFilter(e.target.value);
+      };
+
+      useEffect(() => {
+        setCards(history);
+      }, [history]);
+
+      const handleInput = e => {
+        const input = e.target.value;
+        if (!input) {
+            // Si no se ha ingresado nada en el campo de búsqueda, mostrar todos los datos
+            setCards(history);
+          } else {
+        switch (filter) {
+          case 'temperature':
+            setCards(
+              history.filter((item) => item.temperature.toString().includes(input)
+              ) || []
+            );
+            console.log('hola'+setCards)
+            break;
+          case 'pulse':
+            setCards(
+              history.filter(item => item.pulse.toString().includes(input)) || []
+            );
+            break;
+          case 'oxygen':
+            setCards(
+              history.filter(item => item.oxygen.toString().includes(input)) || []
+            );
+            case 'date':
+            setCards(
+              history.filter(item => item.date.toString().includes(input)) || []
+            );
+            break;
+            default:
+                setCards([]); // Si no se selecciona ningún filtro o el filtro es inválido, muestra un array vacío
+        break;
+          
+        }
+      };
     }
     return (
         <>
@@ -21,42 +68,58 @@ const Historial = () => {
                 <div className="grid h-20 mt-10 flex-grow place-items-center">
                     <Navbar />
                     <div className="flex w-full h-[51rem] ">
-                        <div className="grid bg-neutral  artboard  artboard-horizontal w-full h-full">
+                        <div className="grid bg-neutral  artboard  artboard-horizontal w-full h-full ">
                             <div className=" flex collapse-title text-4xl font-bold p-10 h-1 ">
                                 Historial
                             </div>
-                            <div className="-mt-[6rem]">
-                            <div className="-mt-[8rem] ml-11">
+                            <div className=" p-10 flex items-center gap-12">
+                           
                                     <input
                                         type="text"
                                         placeholder="Search"
-                                        className="input input-bordered w-80 input-primary "
+                                        className="input input-bordered w-80 input-primary"
+                                        onChange={handleInput}
                                     />
-                                </div>
-                                <div className="-mt-[3rem] ml-[24rem]">
-                                    <select className="select select-bordered w-full max-w-xs select-primary">
-                                        <option disabled selected>
-                                            Filtros
-                                        </option>
-                                        <option>Temperatura</option>
-                                        <option>Fecha</option>
-                                        <option>Ritmo cardiaco</option>
-                                        <option>Oxigenación</option>
+                                
+                              
+                                    <select className="select select-bordered w-full max-w-xs select-primary"
+                                    value={filter}
+                                    onChange={handleChange}
+                                    >
+                                       <option value="default" disabled>Filtros</option>
+                                        <option value='temperature'>Temperatura</option>
+                                        <option value='date'>Fecha</option>
+                                        <option value='pulse'>Ritmo cardiaco</option>
+                                        <option value='oxygen'>Oxigenación</option>
                                     </select>
-                                </div>
-                                <div className="-mt-[3rem] ml-[45rem]">
+                               
+                              
                                     <button className="btn btn-outline btn-primary" onClick={handleNavigate}>
                                         Añadir registro
                                     </button>
-                                </div>
+                                
+
+                                    <button className="btn btn-outline btn-primary" >
+                                        Imprimir informe mensual
+                                    </button>
+                               
+                               
+                                    <button className="btn btn-outline btn-primary" >
+                                        Imprimir informe semanal
+                                    </button>
+                               
                             </div>
-                            <div className=" ml-9 mt-[-25rem] mr-4">
-                                <Table></Table>
-                            </div>
+                            
+                            
+                            
+                                <Table data={cards}></Table>
+                            
+                                
+                            
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
         </>
     );
 };
