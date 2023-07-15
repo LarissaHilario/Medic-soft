@@ -1,6 +1,5 @@
 
 import axios from 'axios';
-import { axiosInstancia } from '../../Helpers/AxiosInstancia';
 import {  addUsers } from '../Slices/usersSlice';
 
 

@@ -13,7 +13,6 @@ export const chargingAllData = ()=> {
     })
       .then(({ data }) => {
         console.log(data)
-        localStorage.setItem('data1', data.pulses)
         dispatch(
           addData({
             allData:{

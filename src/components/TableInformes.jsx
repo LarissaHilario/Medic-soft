@@ -6,6 +6,7 @@ import BarChart from "./grphics/BarChart";
 import LineChart from '../components/grphics/LineChart'
 import BubbleChart from '../components/grphics/BubbleChart'
 import { PDFViewer } from '@react-pdf/renderer';
+import OxygenChart from "../components/grphics/BubbleChart";
 
 
 
@@ -63,7 +64,7 @@ const TableInfo = () => {
                  <div className="pt-[8rem]">
                    <Sensor
                    type={'Oxigenación'}
-                   graphic={<BubbleChart/>}
+                   graphic={<OxygenChart/>}
                    />
                  </div>
 

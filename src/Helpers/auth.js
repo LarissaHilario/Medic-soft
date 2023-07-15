@@ -5,3 +5,6 @@ export const deleteToken = () => {
   export const setTokens = token => {
     localStorage.setItem('token', token);
   };
+  export const deleteTheme = () => {
+    localStorage.removeItem('theme');
+  };

@@ -1,8 +1,16 @@
 import React from "react";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
+import { useSelector } from "react-redux";
 
-const labels = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",  "Domingo"];
+const LineChart = () => {
+const weeklyPulse = useSelector((state) => state.weeklyPulse.weeklypulse.weeklypulse);
+console.log(weeklyPulse)
+ const labels= weeklyPulse ? weeklyPulse.map(item => item.date) : [];
+ const datos=  weeklyPulse ?  weeklyPulse.map(item => item.value) : [];
+ if (!weeklyPulse) {
+  return <div>No se encontraron datos</div>; // Muestra un mensaje cuando lastData es null o undefined
+}
 
 const data = {
   labels: labels,
@@ -12,7 +20,7 @@ const data = {
       label: "Ritmo Cardiaco",
       backgroundColor: "#4F7FFD",
       borderColor: "#1154FE",
-      data: [0, 10, 5, 2, 20, 30, 45],
+      data: datos,
     },
   ],
 };
@@ -22,10 +30,9 @@ const options = {
      maintainAspectRatio: false
     }
 
-const LineChart = () => {
   return (
     <div>
-      <Line options={options} data={data} width='400px' height='210px'/>
+      <Line options={options} data={data} width='400px' height='180px'/>
     </div>
   );
 };

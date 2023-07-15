@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Drawer from "./Drawer";
 import avatar from "/avatar1.svg";
 import { logout } from "../Store/Slices/authSlice";
-import { deleteToken } from "../Helpers/auth";
+import { deleteTheme, deleteToken } from "../Helpers/auth";
 import { axiosInstancia } from "../Helpers/AxiosInstancia";
 import { useEffect, useState } from "react";
 import { cleanUsers } from "../Store/Slices/usersSlice";
@@ -14,11 +14,11 @@ import moon from '/media-luna.png'
 import Icon from '@mdi/react';
 import { mdiWhiteBalanceSunny } from '@mdi/js';
 import { mdiMoonWaxingCrescent } from '@mdi/js';
+import { cleanOxygen } from "../Store/Slices/WeekOxygenSlice";
 
 
 const Navbar = () => {
   const dispatch= useDispatch()
-  const user = useSelector(state=>state.user)
   const name= localStorage.getItem('nombre')
   const photo=localStorage.getItem('photo')
   
@@ -29,6 +29,8 @@ const Navbar = () => {
     dispatch(cleanData())
     dispatch(cleanAllData())
     dispatch(cleanTemp())
+    dispatch(cleanOxygen())
+    deleteTheme()
   };
 
   const [theme, setTheme] = useState(

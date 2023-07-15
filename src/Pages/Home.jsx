@@ -1,11 +1,12 @@
-import AllData from "../components/AllData";
 import Data from "../components/Data";
 import Drawer from "../components/Drawer";
 import Navbar from "../components/Navbar";
-import BubbleChart from "../components/grphics/BubbleChart";
+
 import LineChart from "../components/grphics/LineChart";
 
 import BarChart from "../components/grphics/BarChart";
+import OxygenChart from "../components/grphics/BubbleChart";
+import RelationData from "../components/RelationData";
 
 const Home = () => {
   return (
@@ -24,33 +25,37 @@ const Home = () => {
               <div className="pl-10">
                 <Data/>
                 </div>
-                <div className="pl-[2.5rem]">
-                  <AllData/>
-                </div>
-                <div className="pl-10 -mt-[28.5rem] ml-[21.5rem]">
-                  <div className="card w-[29rem]  bg-base-100 shadow-xl">
+                <div className="pl-10 p-8">
+                  <div className="card w-[30rem]  bg-base-100 shadow-xl">
                     <div className="card-body">
                       <h2 className="card-title">Temperatura</h2>
+                      <RelationData title={'Moda'}/>
+                      <RelationData title={'Moda'}/>
                     </div>
                     <figure>
                      <BarChart/>
                     </figure>
+                    
                   </div>
                 </div>
-                <div className="-mt-[42.8rem] ml-[55rem] pr-10">
-                  <div className="card w-full  bg-base-100 shadow-xl">
+                <div className="-mt-[33.4rem] ml-[60rem] pr-10 pl-10 ">
+                  <div className="card w-[35rem] h-[31.5rem] bg-base-100 shadow-xl">
                     <div className="card-body">
                       <h2 className="card-title">Oxigenación</h2>
+                      <RelationData title={'Moda'}/>
+                      <RelationData title={'Moda'}/>
                     </div>
                     <figure>
-                     <BubbleChart/>
+                     <OxygenChart/>
                     </figure>
                   </div>
                 </div>
-                <div className="-mt-[22rem] ml-[55rem] pr-10">
-                  <div className="card w-full  bg-base-100 shadow-xl">
+                <div className="p-12 -mt-[36.4rem] ml-[30.5rem]">
+                  <div className="card w-[28rem] h-[31.5rem] bg-base-100 shadow-xl ">
                     <div className="card-body">
                       <h2 className="card-title">Ritmo cardiaco</h2>
+                      <RelationData title={'Moda'}/>
+                      <RelationData title={'Moda'}/>
                     </div>
                     <figure>
                      <LineChart/>

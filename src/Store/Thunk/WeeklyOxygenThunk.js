@@ -1,12 +1,13 @@
 import axios from 'axios';
-import { addData } from '../Slices/lastData';
+import { addData } from '../Slices/WeekOxygenSlice';
 
 
 
 
-export const chargingData = ()=> {
+
+export const chargingOxygenWeekly = ()=> {
     return async dispatch => {
-      axios.get('http://18.189.196.21:8000/last',{
+      axios.get('http://18.189.196.21:8000/oxygensemanal',{
         headers: {
           'Content-type': 'application/json',
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
@@ -16,11 +17,7 @@ export const chargingData = ()=> {
           console.log(data)
           dispatch(
             addData({
-              lastData:{
-                temperature: data.temperature.value,
-                oxygen: data.oxygen.value,
-                pulse: data.pulse.value
-              }
+                oxygenWeekly:data.oxygen
             })
             )
           })

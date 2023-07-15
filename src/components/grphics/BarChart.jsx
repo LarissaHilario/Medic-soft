@@ -1,15 +1,15 @@
-import React, { useMemo } from "react";
-import Chart from "chart.js/auto";
+import React, { useMemo, useRef } from "react";
 import { Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 
 const BarChart = () => {
+ const weeklyTemp = useSelector((state) => state.weeklyTemps.weeklyTemp.weeklyTemp);
+ console.log(weeklyTemp)
+ const labels= weeklyTemp ? weeklyTemp.map(item => item.date) : [];
+ const datos=  weeklyTemp ?  weeklyTemp.map(item => item.value) : [];
 
- const weeklyTemp = useSelector((state) => state.weeklyTemps.weeklyTemp);
- console.log(temps)
- const labels= useMemo(() => weeklyTemp.map(item => item.date), []);
- const datos= useMemo(() =>weeklyTemp.map(item => item.value), []);
- if (!temps) {
+
+ if (!weeklyTemp) {
   return <div>No se encontraron datos</div>; // Muestra un mensaje cuando lastData es null o undefined
 }
   const data = {
@@ -34,7 +34,7 @@ const BarChart = () => {
   
   return (
     <div>
-      <Bar options={options} data={data} width='400px' height='350px'/>
+      <Bar options={options} data={data} width='400px' height='250px' />
     </div>
   );
 };

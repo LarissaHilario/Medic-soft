@@ -4,6 +4,8 @@ import { usersSlice } from './Slices/usersSlice';
 import { lastDataSlice } from './Slices/lastData';
 import { allDataSlice } from './Slices/allDataSlice';
 import { weeklyTempSlice } from './Slices/WeeksTemperatureSlice';
+import { OxygenWeeklySlice } from './Slices/WeekOxygenSlice';
+import { weeklyPulseSlice } from './Slices/WeekPulseSlice';
 
 
 export const store = configureStore({
@@ -11,7 +13,9 @@ export const store = configureStore({
     authState: authSlice.reducer,
     user: usersSlice.reducer,
     lastData: lastDataSlice.reducer,
+    weeklyPulse: weeklyPulseSlice.reducer,
     allData: allDataSlice.reducer,
-    weeklyTemps: weeklyTempSlice.reducer
+    weeklyTemps: weeklyTempSlice.reducer,
+    oxygenWeekly: OxygenWeeklySlice.reducer,
   },
 });

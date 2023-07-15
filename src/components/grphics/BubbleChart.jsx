@@ -1,44 +1,45 @@
 import React from "react";
-import Chart from "chart.js/auto";
-import { Bubble } from "react-chartjs-2";
-import { faker } from '@faker-js/faker';
+import { Line } from "react-chartjs-2";
+import { useSelector } from "react-redux";
 
 
-const BubbleChart = () => {
-  //const labels = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",  "Domingo"];
+const OxygenChart = ()=>{
+  const weeklyOxygen = useSelector((state) => state.oxygenWeekly.oxygenWeekly.oxygenWeekly);
+  console.log(weeklyOxygen)
+
+  const labels = weeklyOxygen ? weeklyOxygen.map((item) => item.date) : [];
+  const datos = weeklyOxygen ? weeklyOxygen.map((item) => item.value) : [];
+
+  console.log(labels)
+  console.log(datos)
+
+  if (!weeklyOxygen) {
+    return <div>No se encontraron datos</div>;
+  }
+
   const data = {
-   
+    labels: labels,
     datasets: [
-        {
-            label: 'Oxigenación',
-            data: Array.from({ length: 50 }, () => ({
-                x: faker.datatype.number({ min: -100, max: 100 }),
-                y: faker.datatype.number({ min: -100, max: 100 }),
-                r: faker.datatype.number({ min: 5, max: 20 }),
-            })),
-            backgroundColor: '#658FFE',
-          }, 
+      {
+        fill: true,
+        label: "Oxigenación",
+        borderColor: "#1154FE",
+        data: datos,
+      },
     ],
-    
   };
-
-const options = {
-    responsive: true,
-    redraw: true,
-     maintainAspectRatio: false,
-    scales: {
-        y: {
-          beginAtZero: true,
-        },
-    }
-}
-    
+  const options = {
+      responsive: true,
+      redraw: true,
+       maintainAspectRatio: false
+      }
   
-  return (
-    <div>
-      <Bubble options={options} data={data} width='400px' height='250px'/>
-    </div>
-  );
-};
-
-export default BubbleChart;
+    return (
+      <div>
+        <Line options={options} data={data} width='400px' height='210px'/>
+      </div>
+    );
+  };
+  
+  export default OxygenChart;
+  
