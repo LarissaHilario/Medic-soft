@@ -3272,6 +3272,11 @@ svg-arc-to-cubic-bezier@^3.0.0, svg-arc-to-cubic-bezier@^3.2.0:
   resolved "https://registry.yarnpkg.com/svg-arc-to-cubic-bezier/-/svg-arc-to-cubic-bezier-3.2.0.tgz#390c450035ae1c4a0104d90650304c3bc814abe6"
   integrity sha512-djbJ/vZKZO+gPoSDThGNpKDO+o+bAeA4XQKovvkNCqnIS2t+S4qnLAGQhyyrulhCFRl1WWzAp0wUDV8PpTVU3g==
 
+sweetalert2@^11.7.18:
+  version "11.7.18"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.7.18.tgz#94772d30f885c049aa12f8c33e5573978da003e4"
+  integrity sha512-Njl5JTDasSP8yRX9cpLdy2fdxHZYPYNmiIGNZykF2Zt1UHIvurwt/W2LmlGe5RbyMDHYDXuHqlD1Q8Vr5/mqlA==
+
 symbol-observable@^1.0.4:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"

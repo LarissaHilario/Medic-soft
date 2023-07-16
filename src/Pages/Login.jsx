@@ -1,4 +1,5 @@
 import { useDispatch} from "react-redux";
+import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from '../Helpers/AxiosInstance';
 import { useEffect, useState } from "react";
@@ -9,15 +10,28 @@ import { mdiPlus } from '@mdi/js';
 import image from "/logo.png";
 import wave from "/waves.svg"
 import { chargingUsers } from "../Store/Thunk/userThunk";
+
 const Login = () => {
 const dispatch= useDispatch
+const [showAlert, setShowAlert] = useState(false);
 const [posts, setPosts]=useState([])
 const [users, setUsers]= useState([])
+const [state, setState] = useState({
+  name:"",
+  password: "",
+});
 
 const navigate= useNavigate(null)
 const submit=()=>{
   navigate('/crearCuenta')
 }
+
+const clearPassword = () => {
+  setState({
+    ...state,
+    password: "",
+  });
+};
 
 useEffect(() => {
   axiosInstance 
@@ -31,11 +45,6 @@ useEffect(() => {
     });
 }, []);
 
-const handleChangeId =(e)=>{
-  const idd = e.target.value
-}
-
-
 const handlelogin= async(e)=>{
  
 let idd = e.target.value
@@ -48,7 +57,14 @@ await axiosInstance
       console.log(data.message);
       setPosts(data.message);
       chargingUsers()
+
     })
+    .then(() => {
+      // Limpiar el estado de la contraseña al abrir un nuevo diálogo
+      clearPassword();
+      setShowAlert(false);
+    })
+    
     window.login.showModal()
     .catch(err => {
       console.log(err.message);
@@ -56,20 +72,23 @@ await axiosInstance
 };
 
 
-
-const [state, setState] = useState({
-  name:"",
-  password: "",
-});
-
 const handleChange = (e) => {
   const value = e.target.value;
   setState({
     ...state,
     [e.target.name]: value,
-    [e.target.lastname]: value,
   });
+  setShowAlert(false);
 };;
+
+const alert = () => {
+  setShowAlert(true);
+  console.log("fallo");
+};
+
+const closeAlert = () => {
+  setShowAlert(false);
+};
 
 
 
@@ -88,7 +107,7 @@ console.log(id)
     .then((resp) => {     
       const { data } = resp;
       console.log(data)
-      data.status ? navigate("/dashboard"):alert("error")
+      data.status ? navigate("/dashboard"): alert()
       setTokens(data.message.token);
       dispatch(
         login({
@@ -97,39 +116,52 @@ console.log(id)
         })
       );
     })
+    
     .catch(({ response }) => {
       console.log(response.message);
+      
+
     });
 };
   return (
     <>
-      
+    {showAlert && (
+        <div className="alert alert-error">
+          <span>¡Error! Contraseña incorrecta, vuelve a intentarlo.</span>{" "}
+        </div>
+      )}
       <div className="min-h-screen bg-base-100 overflow-hidden">
         <div className="flex-col flex items-center  mt-5 object-center ">
           <img src={image} className="w-100 h-30 "></img>
         </div>
         <div className="flex justify-center">
           <div className="flex  gap-8 mt-[2rem] p-9 w-[42%] h-[390px] no-scrollbar overflow-x-scroll">
+          
           {users.map( (user) => (
             
-             <div className="" key={user.id}>
-             <input
-                 id={user.id}
-                 type="radio"
-                 className="hidden peer "
-                 name="avatar"
-                 required
-                 value={user.id}
-                 onChange={handlelogin}
-                 htmlFor="login"
-               />
-               <label
-                 htmlFor={user.id}
-                 className=" snap-center w-[221px] h-[221px] inline-flex bg-neutral rounded-full cursor-pointer  peer-checked:scale-110 peer-checked:bg-primary peer-checked:transform transition duration-500 hover:scale-110 hover:bg-primary hover:transform transition duration-500">
-                  <img src={user.photoUrl} className=""/>
-                  <label className="font-bold text-4xl  pt-64 -ml-[10rem] flex justify-center items-center">{user.name}</label>
-               </label>
-            </div>))}
+            <div 
+            key={user.id}
+            className="circle-wrapper"
+    onClick={() => handlelogin({ target: { value: user.id } })}>
+            <input
+                id={user.id}
+                type="radio"
+                className="hidden peer "
+                name="avatar"
+                required
+                value={user.id}
+                onChange={() => {}}
+                htmlFor="login"
+              />
+              <label
+                htmlFor={user.id}
+                className=" snap-center w-[221px] h-[221px] inline-flex bg-neutral rounded-full cursor-pointer  peer-checked:scale-110 peer-checked:bg-primary peer-checked:transform transition duration-500 hover:scale-110 hover:bg-primary hover:transform transition duration-500">
+                 <img src={user.photoUrl} alt=""/>
+                 <label className="font-bold text-4xl  pt-64 -ml-[10rem] flex justify-center items-center">{user.name}</label>
+              </label>
+           </div>))}
+
+
             <dialog id="login" className="modal" >
               <form method="dialog" className="modal-box">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -155,7 +187,7 @@ console.log(id)
                     <input
                           name="password"
                           type="password"
-                          required
+                          
                           placeholder="Escribe aquí"
                           className=" mt-1 ml-11 input input-bordered w-[22rem]  max-w-md"
                           value={state.password}
