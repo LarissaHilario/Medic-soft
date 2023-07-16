@@ -70,7 +70,7 @@ const TableInfo = () => {
 
                   <div className="modal-action">
                     {/* if there is a button in form, it will close the modal */}
-                    <button className="btn" >Cerrar</button>
+                    <button className="btn">Cerrar</button>
                   </div>
                 </form>
               </dialog>

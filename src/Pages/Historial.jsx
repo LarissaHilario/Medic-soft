@@ -36,7 +36,6 @@ const Historial = () => {
               history.filter((item) => item.temperature.toString().includes(input)
               ) || []
             );
-            console.log('hola'+setCards)
             break;
           case 'pulse':
             setCards(
@@ -47,6 +46,7 @@ const Historial = () => {
             setCards(
               history.filter(item => item.oxygen.toString().includes(input)) || []
             );
+            break;
             case 'date':
             setCards(
               history.filter(item => item.date.toString().includes(input)) || []
@@ -93,17 +93,13 @@ const Historial = () => {
                                         <option value='oxygen'>Oxigenación</option>
                                     </select>
                                
-                              
+    
                                     <button className="btn btn-outline btn-primary" onClick={handleNavigate}>
                                         Añadir registro
                                     </button>
-                                
-
                                     <button className="btn btn-outline btn-primary" >
                                         Imprimir informe mensual
                                     </button>
-                               
-                               
                                     <button className="btn btn-outline btn-primary" >
                                         Imprimir informe semanal
                                     </button>

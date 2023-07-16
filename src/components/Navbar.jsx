@@ -15,6 +15,9 @@ import Icon from '@mdi/react';
 import { mdiWhiteBalanceSunny } from '@mdi/js';
 import { mdiMoonWaxingCrescent } from '@mdi/js';
 import { cleanOxygen } from "../Store/Slices/WeekOxygenSlice";
+import { cleanHistory } from "../Store/Slices/HistorySlice";
+import { cleanStat } from "../Store/Slices/statiticsSlice";
+import { cleanPulse } from "../Store/Slices/WeekPulseSlice";
 
 
 const Navbar = () => {
@@ -30,6 +33,9 @@ const Navbar = () => {
     dispatch(cleanAllData())
     dispatch(cleanTemp())
     dispatch(cleanOxygen())
+    dispatch(cleanHistory())
+    dispatch(cleanPulse())
+    dispatch(cleanStat())
     deleteTheme()
   };
 

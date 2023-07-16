@@ -7,6 +7,7 @@ import { weeklyTempSlice } from './Slices/WeeksTemperatureSlice';
 import { OxygenWeeklySlice } from './Slices/WeekOxygenSlice';
 import { weeklyPulseSlice } from './Slices/WeekPulseSlice';
 import { historySlice } from './Slices/HistorySlice';
+import { statisticsSlice } from './Slices/statiticsSlice';
 
 
 export const store = configureStore({
@@ -18,6 +19,7 @@ export const store = configureStore({
     allData: allDataSlice.reducer,
     weeklyTemps: weeklyTempSlice.reducer,
     oxygenWeekly: OxygenWeeklySlice.reducer,
-    history: historySlice.reducer
+    history: historySlice.reducer,
+    statistics:statisticsSlice.reducer
   },
 });

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const OxygenChart = ()=>{
   const weeklyOxygen = useSelector((state) => state.oxygenWeekly.oxygenWeekly.oxygenWeekly);
   console.log(weeklyOxygen)
-
+  
   const labels = weeklyOxygen ? weeklyOxygen.map((item) => item.date) : [];
   const datos = weeklyOxygen ? weeklyOxygen.map((item) => item.value) : [];
 
@@ -21,7 +21,6 @@ const OxygenChart = ()=>{
     labels: labels,
     datasets: [
       {
-        fill: true,
         label: "Oxigenación",
         borderColor: "#1154FE",
         data: datos,

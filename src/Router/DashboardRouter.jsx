@@ -15,6 +15,7 @@ import { chargingWeelyTemp } from '../Store/Thunk/WeekTemperatureThunk';
 import { chargingOxygenWeekly } from '../Store/Thunk/WeeklyOxygenThunk';
 import { chargingWeeklyPulse } from '../Store/Thunk/WeeklyPulseThunk';
 import { chargingHistory } from '../Store/Thunk/HistoryThunk';
+import {  chargingStatistics } from '../Store/Thunk/StatisticsThunk';
 
 const DashBoardRoutes = () => {
   const token = localStorage.getItem('token');
@@ -25,6 +26,7 @@ const DashBoardRoutes = () => {
   const oxygenWeekly= useSelector((state)=> state.oxygenWeekly)
   const weeklyPulse= useSelector((state) => state.weeklyPulse)
   const history = useSelector((state)=> state.history)
+  const statistics= useSelector((state)=>state.statistics)
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -38,6 +40,7 @@ const DashBoardRoutes = () => {
         await dispatch(chargingWeeklyPulse())
         await dispatch(chargingOxygenWeekly())
         await dispatch(chargingHistory())
+        await dispatch(chargingStatistics())
         
         setIsLoading(false);
       } catch (error) {

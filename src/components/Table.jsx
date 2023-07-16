@@ -5,6 +5,8 @@ import { mdiChartBubble } from "@mdi/js";
 import { useSelector } from "react-redux";
 
 const Table = ({data}) => {
+  const name= localStorage.getItem('nombre')
+  const lastname= localStorage.getItem('apellido')
 
  
   return (
@@ -38,23 +40,23 @@ const Table = ({data}) => {
             <td>{row.oxygen}</td>
             <td>{row.pulse}</td>
             <th>
-              <button className="btn btn-ghost btn-xs" onClick={() => window.my_modal_1.showModal()}>Detalles</button>
-              <dialog id="my_modal_1" className="modal">
+              <button className="btn btn-ghost btn-xs" onClick={() => window[`my_modal_${row.id}`].showModal()}>Detalles</button>
+              <dialog id={`my_modal_${row.id}`} className="modal">
                 <form method="dialog" className="modal-box">
-                  <h3 className="font-black text-2xl text-primary eading-loose">Paciente: Aylin Malpica</h3>
+                  <h3 className="font-black text-2xl text-primary eading-loose">Paciente: {name} {lastname}</h3>
                   <div className="pt-4 pb-4">
                     <label className=" px-11">
-                    FECHA: 14/06/2023
+                    {row.date}
                   </label>
                   <label className=" px-11 ">
-                    Hora: 00:00
+                    Hora: {row.time}
                   </label>
                   </div>
                   
                   <div className="stats stats-vertical shadow">
                     <div className="stat">
                       <div className="stat-title">Temperatura</div>
-                      <div className="stat-value">25°C</div>
+                      <div className="stat-value">{row.temperature}°C</div>
                       <div className="stat-figure text-primary">
                           <Icon path={mdiThermometer} size={2} />
                         </div>
@@ -62,7 +64,7 @@ const Table = ({data}) => {
 
                     <div className="stat">
                       <div className="stat-title">Oxigenación</div>
-                      <div className="stat-value">4,200</div>
+                      <div className="stat-value">{row.oxygen}</div>
                       <div className="stat-figure text-primary">
                           <Icon path={mdiChartBubble} size={2} />
                         </div>
@@ -70,7 +72,7 @@ const Table = ({data}) => {
 
                     <div className="stat">
                       <div className="stat-title">Ritmo Cardiaco</div>
-                      <div className="stat-value">1,200</div>
+                      <div className="stat-value">{row.pulse}</div>
                       <div className="stat-figure text-secondary">
                           <Icon path={mdiHeartPulse} size={2} />
                         </div>

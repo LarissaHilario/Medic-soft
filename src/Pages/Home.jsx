@@ -7,8 +7,14 @@ import LineChart from "../components/grphics/LineChart";
 import BarChart from "../components/grphics/BarChart";
 import OxygenChart from "../components/grphics/BubbleChart";
 import RelationData from "../components/RelationData";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const statistics = useSelector((state)=> state.statistics.statistics.statistics)
+  console.log(statistics)
+  if (!statistics) {
+    return <div>No se encontraron datos</div>;
+  }
   return (
     <>
       <div className="flex w-full overflow-hidden">
@@ -29,8 +35,8 @@ const Home = () => {
                   <div className="card w-[30rem] h-[31rem] bg-base-100 shadow-xl">
                     <div className="card-body">
                       <h2 className="card-title">Oxigenación</h2>
-                      <RelationData title={'Moda'}/>
-                      <RelationData title={'Moda'}/>
+                      <RelationData title={'Moda'} title2={'Media'} title3={'Mediana'} data={statistics.oxygen.moda} data2={statistics.oxygen.media} data3={statistics.oxygen.mediana} withdata3={true}/>
+                      <RelationData title={'Varianza'} title2={'Desviación Estándar'} data={statistics.oxygen.varianza} data2={statistics.oxygen.estandar}/>
                     </div>
                     <figure>
                      <OxygenChart/>
@@ -42,8 +48,8 @@ const Home = () => {
                   <div className="card  bg-base-100 shadow-xl ">
                     <div className="card-body">
                       <h2 className="card-title">Temperatura</h2>
-                      <RelationData title={'Moda'}/>
-                      <RelationData title={'Moda'}/>
+                      <RelationData title={'Moda'} title2={'Media'} title3={'Mediana'} data={statistics.temperature.moda} data2={statistics.temperature.media} data3={statistics.temperature.mediana} withdata3={true} />
+                      <RelationData title={'Varianza'} title2={'Desviación Estándar'} data={statistics.temperature.varianza} data2={statistics.temperature.estandar}/>
                     </div>
                     <figure>
                      <BarChart/>
@@ -54,8 +60,8 @@ const Home = () => {
                   <div className="card w-[28rem] h-[31rem] bg-base-100 shadow-xl ">
                     <div className="card-body">
                       <h2 className="card-title">Ritmo cardiaco</h2>
-                      <RelationData title={'Moda'}/>
-                      <RelationData title={'Moda'}/>
+                      <RelationData title={'Moda'} title2={'Media'} title3={'Mediana'} data={statistics.pulse.moda} data2={statistics.pulse.media} data3={statistics.pulse.mediana} withdata3={true} />
+                      <RelationData title={'Varianza'} title2={'Desviación Estándar'} data={statistics.pulse.varianza} data2={statistics.pulse.estandar}/>
                     </div>
                     <figure>
                      <LineChart/>
