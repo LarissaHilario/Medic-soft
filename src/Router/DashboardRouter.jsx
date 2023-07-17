@@ -62,7 +62,6 @@ const DashBoardRoutes = () => {
       <Routes>
         <Route path='/historial' element={<Historial />} />
         <Route path='/registro' element={<Register />} />
-        <Route path='/informes' element={<Reports />} />
         <Route path='/dashboard' element={<Home />} />
         <Route path='/document' element={<Viewer />} />
         <Route path='/*' element={<Navigate to={('/dashboard')} />} />

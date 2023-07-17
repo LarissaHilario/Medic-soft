@@ -9,28 +9,53 @@ const BarChart = () => {
  const datos=  weeklyTemp ?  weeklyTemp.map(item => item.value) : [];
 
 
- if (!weeklyTemp) {
-  return <div>No se encontraron datos</div>; // Muestra un mensaje cuando lastData es null o undefined
-}
-  const data = {
-    labels: labels,
+ const dato={
+  labels: [],
     datasets: [
       {
         label: "Temperatura",
         backgroundColor: "#4F7FFD",
         borderColor: "rgb(255, 99, 132)",
-        data: datos,
+        data: [0,0,0],
       },
       
     ],
     redraw: true
-  };
 
-    const options = {
-    responsive: true,
-    redraw: true,
-     maintainAspectRatio: false
-    }
+}
+
+ const data = {
+  labels: labels,
+  datasets: [
+    {
+      label: "Temperatura",
+      backgroundColor: "#4F7FFD",
+      borderColor: "rgb(255, 99, 132)",
+      data: datos,
+    },
+    
+  ],
+  redraw: true
+};
+
+  const options = {
+  responsive: true,
+  redraw: true,
+   maintainAspectRatio: false
+  }
+
+ if (!weeklyTemp) {
+  return <div>
+  <Bar options={options} data={dato} width='400px' height='470px' />
+</div> // Muestra un mensaje cuando lastData es null o undefined
+}
+
+
+
+
+
+
+  
   
   return (
     <div>

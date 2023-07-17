@@ -29,7 +29,7 @@ const Drawer = () => {
                 <NavLink to="/dashboard"><li className='p-2 ' ><a className=' text-base font-bold text-'> <Icon path={mdiChartBar} size={1.5} color="#1154FE" /> Dashboard</a></li></NavLink>
                 <NavLink to="/registro"><li className='p-2'><a className=' text-base font-bold'> <Icon path={mdiThermometerPlus} size={1.5} color="#1154FE"/>Registro</a></li></NavLink>
                 <NavLink to="/historial"><li className='p-2'><a className=' text-base font-bold'> <Icon path={mdiClipboardTextClockOutline} size={1.5} color="#1154FE"/>Historial</a></li> </NavLink>
-                <NavLink to="/informes"><li className='p-2'><a className=' text-base font-bold align-middle items-center'> <Icon path={mdiFileChart} size={1.5} color="#1154FE" />Informes</a></li></NavLink>
+              
             </ul>
           </div>
         </div>

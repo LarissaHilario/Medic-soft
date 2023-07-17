@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { axiosInstance } from '../Helpers/AxiosInstance';
 import { useEffect, useState } from "react";
 import { login } from '../Store/Slices/authSlice'
-import { setTokens } from "../Helpers/auth";
+import { deleteToken, setTokens } from "../Helpers/auth";
 import Icon from '@mdi/react';
 import { mdiPlus } from '@mdi/js';
 import image from "/logo.png";
@@ -14,6 +14,7 @@ import { chargingUsers } from "../Store/Thunk/userThunk";
 const Login = () => {
 const dispatch= useDispatch
 const [showAlert, setShowAlert] = useState(false);
+const [recordatorio, setRecordatorio] = useState(false);
 const [posts, setPosts]=useState([])
 const [users, setUsers]= useState([])
 const [state, setState] = useState({
@@ -62,6 +63,7 @@ await axiosInstance
     .then(() => {
       // Limpiar el estado de la contraseña al abrir un nuevo diálogo
       clearPassword();
+    
       setShowAlert(false);
     })
     
@@ -86,43 +88,53 @@ const alert = () => {
   console.log("fallo");
 };
 
+const recordatorioo =()=>{
+  setRecordatorio(true)
+}
+
 const closeAlert = () => {
   setShowAlert(false);
 };
 
-
-
 const handleSubmit = async (e) => {
   e.preventDefault();
-  let id = e.target.value
-console.log(id)
+  let id = e.target.value;
+  console.log(id);
   const userData = {
     id: posts.id,
     password: state.password,
   };
-  console.log(userData)
-  await axiosInstance
-    .post("login",userData
-    )
-    .then((resp) => {     
-      const { data } = resp;
-      console.log(data)
-      data.status ? navigate("/dashboard"): alert()
+  console.log(userData);
+  try {
+    const resp = await axiosInstance.post("login", userData);
+    const { data } = resp;
+    console.log(data);
+    if (data.status) {
+      // Inicio de sesión exitoso, navegar al dashboard con el token
+      navigate("/dashboard");
       setTokens(data.message.token);
       dispatch(
         login({
           token: data.message.token,
           status: resp.status,
         })
-      );
-    })
-    
-    .catch(({ response }) => {
-      console.log(response.message);
+      ); 
       
-
-    });
+    } else {
+      // Inicio de sesión fallido, mostrar una alerta
+      alert();
+    }
+  } catch (error) {
+    // Error con la llamada a la API, mostrar una alerta
+    console.log(error.message);
+    alert();
+  }
 };
+
+
+
+
+
   return (
     <>
     {showAlert && (
@@ -141,8 +153,8 @@ console.log(id)
             
             <div 
             key={user.id}
-            className="circle-wrapper"
-    onClick={() => handlelogin({ target: { value: user.id } })}>
+            className="circle-wrapper cursor-pointer"
+            onClick={() => handlelogin({ target: { value: user.id } })}>
             <input
                 id={user.id}
                 type="radio"
@@ -156,7 +168,7 @@ console.log(id)
               <label
                 htmlFor={user.id}
                 className=" snap-center w-[221px] h-[221px] inline-flex bg-neutral rounded-full cursor-pointer  peer-checked:scale-110 peer-checked:bg-primary peer-checked:transform transition duration-500 hover:scale-110 hover:bg-primary hover:transform transition duration-500">
-                 <img src={user.photoUrl} alt=""/>
+                 <img src={user.photoUrl} alt="" className="cursor-pointer"/>
                  <label className="font-bold text-4xl  pt-64 -ml-[10rem] flex justify-center items-center">{user.name}</label>
               </label>
            </div>))}
@@ -187,7 +199,6 @@ console.log(id)
                     <input
                           name="password"
                           type="password"
-                          
                           placeholder="Escribe aquí"
                           className=" mt-1 ml-11 input input-bordered w-[22rem]  max-w-md"
                           value={state.password}

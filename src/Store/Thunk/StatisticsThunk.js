@@ -13,8 +13,7 @@ export const chargingStatistics= ()=> {
           console.log(data)
           dispatch(
             addStat(
-              { statistics:{
-                
+              { statistics:{ 
                 temperature: data.temperature,
               oxygen: data.oxygen,
             pulse:data.pulse }}))

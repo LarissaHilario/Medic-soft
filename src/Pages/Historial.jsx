@@ -6,9 +6,12 @@ import Drawer from "../components/Drawer";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { axiosInstancia } from "../Helpers/AxiosInstancia";
+import axios from "axios";
 
 const Historial = () => {
     const [cards, setCards]= useState([])
+    const [recordatorio, setRecordatorio] = useState(true);
     const navigate = useNavigate()
     const [filter, setFilter] = useState('default');
     const history = useSelector((state)=> state.history.history.history.history)
@@ -23,6 +26,55 @@ const Historial = () => {
       useEffect(() => {
         setCards(history);
       }, [history]);
+
+      const handleMonth=()=>{
+        return (
+          axios.get('http://18.189.196.21:8000/monthly-inform',{
+            responseType: "blob",
+            headers:{
+              'Content-type': 'application/json',
+              'Authorization' : `Bearer ${localStorage.getItem('token')}`
+            }
+          })
+            .then(({ data }) => {
+              const blob = new Blob([data], { type: "application/pdf" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "InformeMensual.pdf";
+          a.click();
+          URL.revokeObjectURL(url);
+            })
+        )
+      }
+
+
+      const handleWeek=()=>{
+        return (
+          axios.get('http://18.189.196.21:8000/weekly-inform',{
+            responseType: "blob",
+            headers:{
+              'Content-type': 'application/json',
+              'Authorization' : `Bearer ${localStorage.getItem('token')}`
+            },
+          })
+            .then(({ data }) => {
+              const blob = new Blob([data], { type: "application/pdf" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "InformeSemanal.pdf";
+          a.click();
+          URL.revokeObjectURL(url);
+            })
+        )
+      }
+
+      const changeRecordatorio=()=>{
+        setRecordatorio(false)
+      }
+
+
 
       const handleInput = e => {
         const input = e.target.value;
@@ -61,6 +113,13 @@ const Historial = () => {
     }
     return (
         <>
+        {recordatorio && (
+        <div className="alert alert-info">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span>Recuerda imprimir tus informes semanales y mensuales</span>
+        <button onClick={changeRecordatorio}>Cerrar</button>
+      </div>
+      )}
             <div className="flex w-full overflow-hidden">
                 <div className="grid w-1flex-grow place-items-center">
                     <Drawer />
@@ -97,10 +156,10 @@ const Historial = () => {
                                     <button className="btn btn-outline btn-primary" onClick={handleNavigate}>
                                         Añadir registro
                                     </button>
-                                    <button className="btn btn-outline btn-primary" >
+                                    <button className="btn btn-outline btn-primary" onClick={handleMonth} >
                                         Imprimir informe mensual
                                     </button>
-                                    <button className="btn btn-outline btn-primary" >
+                                    <button className="btn btn-outline btn-primary"  onClick={handleWeek}>
                                         Imprimir informe semanal
                                     </button>
                                
