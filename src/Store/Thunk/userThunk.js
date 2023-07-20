@@ -7,7 +7,7 @@ import {  addUsers } from '../Slices/usersSlice';
 
 export const chargingUsers = ()=> {
     return async dispatch => {
-      axios.get('http://18.189.196.21:8000/userdetails',{
+      axios.get('https://apipython.ddns.net/userdetails',{
         headers: {
           'Content-type': 'application/json',
           'Authorization': 'Bearer ' + localStorage.getItem('token'),

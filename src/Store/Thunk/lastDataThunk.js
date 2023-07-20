@@ -6,7 +6,7 @@ import { addData } from '../Slices/lastData';
 
 export const chargingData = ()=> {
     return async dispatch => {
-      axios.get('http://18.189.196.21:8000/last',{
+      axios.get('https://apipython.ddns.net/last',{
         headers: {
           'Content-type': 'application/json',
           'Authorization': 'Bearer ' + localStorage.getItem('token'),

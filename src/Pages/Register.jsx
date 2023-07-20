@@ -4,44 +4,39 @@ import Drawer from "../components/Drawer";
 import Navbar from "../components/Navbar";
 import Electro from "../components/progressiveLine";
 import { useEffect } from "react";
-
 import io from "socket.io-client";
+import image from '/doctor.png'
+import Loader from "../components/Loader";
+import LoaderComponent from "../components/Loader";
+import { axiosInstancia } from "../Helpers/AxiosInstancia";
+import axios from "axios";
+
 const Register = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [temperature, setTemperature] = useState("");
   const [oxygenation, setOxygenation] = useState("");
   const [heartRate, setHeartRate] = useState("");
-  const [socket, setSocket] = useState(null);   
-
- 
-      /*socket.on("data", (data) => {
-        setTemperature(data.temperature);
-        setHeartRate(data.pulse); 
-        setOxygenation(data.oxygen);
-  
-      });*/    
-  
-      const [datosSensores, setDatosSensores] = useState({});
 
       useEffect(() => {
-        // Establecer la conexión con el servidor socket
-        const socket = new WebSocket('ws://192.168.100.243:4567');
-    
-        // Escuchar los mensajes recibidos desde el servidor
-        socket.onmessage = (event) => {
-          const datos = JSON.parse(event.data);
-          setDatosSensores(datos);
-        };
-    
-        // Manejar errores
-        socket.onerror = (error) => {
-          console.error('Error en la conexión del WebSocket:', error);
-        };
-    
-        // Cerrar la conexión al desmontar el componente (opcional)
-        return () => socket.close();
-      }, []);
-
-  
+        const socket = io('ws://3.23.169.85:4000');
+        socket.on('connect', () => {
+        console.log('Connected to server');
+        socket.send('¡Hola, servidor! Soy el cliente.');
+        socket.send('¡Holaaaaaaaaaaaaaaaaaaaaaaa');
+        socket.on("data",(data) => {
+        console.log(data)
+        const parsedData = JSON.parse(data);
+        console.log(parsedData)
+        setTemperature(parsedData.temperature);
+        setHeartRate(parsedData.pulse); 
+        setOxygenation(parsedData.oxygen);
+        setIsLoading(false);
+        })
+      });
+      return () => {
+            socket.disconnect();
+          };
+        });
 
 
   const handleSubmit =async (e)=>{
@@ -49,20 +44,23 @@ const Register = () => {
     const sensorData = {
     temperature: temperature,
     pulse: heartRate,
-    oxygen:oxygenation
+    oxygen: oxygenation
   };
   console.log(sensorData)
-  await axiosInstance
-    .post("sensors",sensorData
-    )
+  await axios.post("https://apipython.ddns.net/sensors",sensorData,{
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization' : `Bearer ${localStorage.getItem('token')}`
+    },
+  })
+    
     .then((resp) => {     
       const { data } = resp;
       console.log(data)
     })
-    
+
     .catch(({ response }) => {
       console.log(response.message);
-      
 
     });
   }
@@ -82,13 +80,14 @@ const Register = () => {
               <div className=" flex collapse-title text-4xl font-bold p-10 h-1 ">
                 Registro de signos vitales
               </div>
-              <div className=" flex text-xl font-medium p-10 -mt-[2rem] h-1 ">
-                Por favor, conecta los sensores para empezar a monitorear tu signos vitales
+              <div className=" flex text-xl font-medium p-10 -mt-[8rem] h-1 ">
+                Por favor, conecta los sensores para empezar a monitorear tus signos vitales
               </div>
               <div className="flex w-full">
-                <div className="grid flex-grow  place-items-center">
+              <div className="grid flex-grow  place-items-center -mt-[10rem]">
                   <div className="form-control w-full max-w-xs flex justify-center">
                     <div className="pb-10">
+  
                     <label className="label ">
                       <span className="label-text-bold font-bold ">
                         Temperatura
@@ -97,7 +96,7 @@ const Register = () => {
                     <input
                       disabled="disabled"
                       placeholder="Espera tus resultados en °C"
-                      
+                      value={temperature}
                       className=" mt-1 ml-12 input input-bordered w-[22rem] max-w-md"
                     />
                     </div>
@@ -112,7 +111,7 @@ const Register = () => {
                       disabled="disabled"
                       placeholder="Espera tus resultados"
                       className=" mt-1 ml-12 input input-bordered w-[22rem] max-w-md"
-                      
+                      value={oxygenation}
                     />
                     </div>
                     
@@ -126,7 +125,7 @@ const Register = () => {
                       disabled='disabled'
                       placeholder="Espera tus resultados"
                       className=" mt-1 ml-12 input input-bordered input-primary  w-[22rem] max-w-md"
-                    
+                      value={heartRate}
                     />
                     </div>
                     <div className="pb-5 pt-5 ml-12 w-[22rem]">
@@ -134,14 +133,23 @@ const Register = () => {
                       Guardar datos
                     </button>
                     </div>
-                  </div>
-                </div>
-                <div className="grid  flex-grow place-items-center">
-                    <div className="flex justify-center items-center bg-base-100  artboard  artboard-horizontal w-[60rem] h-[40rem] rounded-2xl">
-                </div>
+                    </div>
+                    </div>
+                    <div className="grid  flex-grow place-items-center -mt-[10rem] ">
+                    <div className="flex justify-center items-center bg-base-100  artboard  artboard-horizontal w-[40rem] h-[30rem] rounded-2xl">
+                    {isLoading ? (
+        <LoaderComponent />
+      ) : (
+        <>
+        <div className="flex justify-center items-center bg-base-100  artboard  artboard-horizontal w-[40rem] h-[30rem] rounded-2xl">
+          <img src={image}></img>
+          </div>
+          </>)}
+
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>

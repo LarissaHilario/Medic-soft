@@ -6,7 +6,7 @@ import { addTemp } from '../Slices/WeeksTemperatureSlice';
 
 export const chargingWeelyTemp = ()=> {
     return async dispatch => {
-      axios.get('http://18.189.196.21:8000/tempsemanal',{
+      axios.get('https://apipython.ddns.net/tempsemanal',{
         headers: {
           'Content-type': 'application/json',
           'Authorization': 'Bearer ' + localStorage.getItem('token'),

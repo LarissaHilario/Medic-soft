@@ -7,7 +7,7 @@ import { addData } from '../Slices/WeekOxygenSlice';
 
 export const chargingOxygenWeekly = ()=> {
     return async dispatch => {
-      axios.get('http://18.189.196.21:8000/oxygensemanal',{
+      axios.get('https://apipython.ddns.net/oxygensemanal',{
         headers: {
           'Content-type': 'application/json',
           'Authorization': 'Bearer ' + localStorage.getItem('token'),

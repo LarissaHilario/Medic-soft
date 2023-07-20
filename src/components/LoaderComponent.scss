@@ -1,0 +1,39 @@
+$primary: #6E7BF2;
+
+
+
+.spinner {
+  position: absolute;
+  top: 65%; /* Ajustar el valor para centrar verticalmente */
+  left: 75%; /* Ajustar el valor para centrar horizontalmente */
+  transform: translate(-50%, -50%) scale(18);// Centrar el elemento
+
+  .imagenn {
+    polyline {
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+
+      &#back {
+        stroke: rgba($primary, 0.3);
+      }
+
+      &#front {
+        stroke: $primary;
+        stroke-dasharray: 40, 36; // Dash 12 & Gap 36
+        stroke-dashoffset: 48;
+        animation: dash 1s linear infinite;
+      }
+    }
+  }
+}
+
+@keyframes dash {
+  62.5% {
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,10 +1,9 @@
 import { useDispatch} from "react-redux";
-import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from '../Helpers/AxiosInstance';
 import { useEffect, useState } from "react";
 import { login } from '../Store/Slices/authSlice'
-import { deleteToken, setTokens } from "../Helpers/auth";
+import {setTokens } from "../Helpers/auth";
 import Icon from '@mdi/react';
 import { mdiPlus } from '@mdi/js';
 import image from "/logo.png";
@@ -14,7 +13,6 @@ import { chargingUsers } from "../Store/Thunk/userThunk";
 const Login = () => {
 const dispatch= useDispatch
 const [showAlert, setShowAlert] = useState(false);
-const [recordatorio, setRecordatorio] = useState(false);
 const [posts, setPosts]=useState([])
 const [users, setUsers]= useState([])
 const [state, setState] = useState({
@@ -88,9 +86,7 @@ const alert = () => {
   console.log("fallo");
 };
 
-const recordatorioo =()=>{
-  setRecordatorio(true)
-}
+
 
 const closeAlert = () => {
   setShowAlert(false);
@@ -175,7 +171,7 @@ const handleSubmit = async (e) => {
 
 
             <dialog id="login" className="modal" >
-              <form method="dialog" className="modal-box">
+              <form method="dialog" className="modal-box" onSubmit={handleSubmit}>
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                 <div className="flex-col flex items-center  mt-2 object-center ">
                   <img src={image} className="w-60 h-30 flex justify-center "></img>
@@ -206,7 +202,7 @@ const handleSubmit = async (e) => {
                         />
                   </div>
                   <div className="z-10">
-                    <button type="submit"  onClick={handleSubmit} className="btn btn-primary ml-12 mt-10 mb-10 w-3/4 max-w-md">
+                    <button type="submit" tabIndex="0" onClick={handleSubmit} className="btn btn-primary ml-12 mt-10 mb-10 w-3/4 max-w-md">
                       Iniciar Sesión
                     </button>
                   </div>
