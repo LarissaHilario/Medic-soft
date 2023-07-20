@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 const AllData =()=>{
   const allData = useSelector((state) => state.allData.allData);
-  console.log(allData)
+
   if (!allData) {
     return(
     <div className="card w-[20rem] bg-base-100 shadow-xl">
@@ -37,7 +37,7 @@ const AllData =()=>{
   const oxygenn = allData.allData.oxygen
   const pulse = allData.allData.pulse
   const temperatures= allData.allData.temperature
-  console.log(pulse)
+
 
     return(
         <div className="card w-[20rem] bg-base-100 shadow-xl">

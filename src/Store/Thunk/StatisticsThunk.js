@@ -10,7 +10,7 @@ export const chargingStatistics= ()=> {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
         }})
         .then(({ data }) => {
-          console.log(data)
+          
           dispatch(
             addStat(
               { statistics:{ 

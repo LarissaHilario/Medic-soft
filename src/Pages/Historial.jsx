@@ -12,7 +12,6 @@ const Historial = () => {
   const navigate = useNavigate()
   const [filter, setFilter] = useState('default');
   const history = useSelector((state) => state.history.history.history)
-  console.log(history)
 
   const handleNavigate = () => {
     navigate('/registro')

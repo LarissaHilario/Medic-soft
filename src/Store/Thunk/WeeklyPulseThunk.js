@@ -11,7 +11,7 @@ export const chargingWeeklyPulse = ()=> {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
         }})
         .then(({ data }) => {
-          console.log(data.pulses)
+         
           dispatch(
             addPulse(
               { weeklypulse: data.pulses }))

@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 
 const Home = () => {
   const statistics = useSelector((state)=> state.statistics.statistics.statistics)
-  console.log(statistics)
   if (!statistics) {
     return <div><>
     <div className="flex w-full overflow-hidden">

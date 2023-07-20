@@ -17,7 +17,7 @@ export const chargingUsers = ()=> {
           localStorage.setItem('nombre', data.user.name);
           localStorage.setItem('apellido', data.user.lastname);
           localStorage.setItem('photo', data.user.photoUrl);
-          console.log(data)
+        
           dispatch(
             addUsers({
               user: {

@@ -10,7 +10,6 @@ import {axiosInstancia} from '../Helpers/AxiosInstancia'
 const Data =()=>{
 
   const lastData = useSelector((state) => state.lastData.lastData);
-  console.log(lastData)
   if (!lastData) {
     return ( <div className="card w-[59rem] bg-base-100 shadow-xl">
     <div className="card-body w-[59rem]">
@@ -49,7 +48,6 @@ const Data =()=>{
   const temperature = lastData.lastData.temperature;
   const oxygen=lastData.lastData.oxygen;
   const pulse = lastData.lastData.pulse;
-  console.log(temperature)
 
 
     return(

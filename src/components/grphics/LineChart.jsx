@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const LineChart = () => {
 const weeklyPulse = useSelector((state) => state.weeklyPulse.weeklypulse.weeklypulse);
-console.log(weeklyPulse)
  const labels= weeklyPulse ? weeklyPulse.map(item => item.date) : [];
  const datos=  weeklyPulse ?  weeklyPulse.map(item => item.value) : [];
  if (!weeklyPulse) {

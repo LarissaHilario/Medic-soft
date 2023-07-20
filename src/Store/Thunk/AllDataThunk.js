@@ -12,7 +12,6 @@ export const chargingAllData = ()=> {
       },
     })
       .then(({ data }) => {
-        console.log(data)
         dispatch(
           addData({
             allData:{

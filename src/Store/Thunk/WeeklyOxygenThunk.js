@@ -14,7 +14,7 @@ export const chargingOxygenWeekly = ()=> {
         },
       })
         .then(({ data }) => {
-          console.log(data)
+         
           dispatch(  
             addData({
                 oxygenWeekly:data.oxygen

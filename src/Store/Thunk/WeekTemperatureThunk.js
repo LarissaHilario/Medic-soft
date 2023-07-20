@@ -12,7 +12,7 @@ export const chargingWeelyTemp = ()=> {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
         }})
         .then(({ data }) => {
-          console.log(data.temperatures)
+          
           dispatch(
             addTemp(
               { weeklyTemp: data.temperatures }))

@@ -36,7 +36,7 @@ useEffect(() => {
   axiosInstance 
   .get('users')
     .then(({ data }) => {
-      console.log(data.message)
+   
       setUsers(data.message);
     })
     .catch(err => {
@@ -48,12 +48,11 @@ const handlelogin= async(e)=>{
  
 let idd = e.target.value
 localStorage.setItem('userId', idd);
-console.log(idd)
+
 const id = localStorage.getItem('userId')
 await axiosInstance 
   .get('users/' + id )
     .then(({ data }) => {
-      console.log(data.message);
       setPosts(data.message);
       chargingUsers()
 
@@ -61,7 +60,6 @@ await axiosInstance
     .then(() => {
       // Limpiar el estado de la contraseña al abrir un nuevo diálogo
       clearPassword();
-    
       setShowAlert(false);
     })
     
@@ -83,9 +81,11 @@ const handleChange = (e) => {
 
 const alert = () => {
   setShowAlert(true);
-  console.log("fallo");
 };
-
+const closeDialog = () => {
+  const dialog = document.getElementById("login");
+  dialog.close();
+};
 
 
 const closeAlert = () => {
@@ -95,16 +95,13 @@ const closeAlert = () => {
 const handleSubmit = async (e) => {
   e.preventDefault();
   let id = e.target.value;
-  console.log(id);
   const userData = {
     id: posts.id,
     password: state.password,
   };
-  console.log(userData);
   try {
     const resp = await axiosInstance.post("login", userData);
     const { data } = resp;
-    console.log(data);
     if (data.status) {
       // Inicio de sesión exitoso, navegar al dashboard con el token
       navigate("/dashboard");
@@ -172,7 +169,7 @@ const handleSubmit = async (e) => {
 
             <dialog id="login" className="modal" >
               <form method="dialog" className="modal-box" onSubmit={handleSubmit}>
-                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={closeDialog}>✕</button>
                 <div className="flex-col flex items-center  mt-2 object-center ">
                   <img src={image} className="w-60 h-30 flex justify-center "></img>
                 </div>
@@ -208,8 +205,8 @@ const handleSubmit = async (e) => {
                   </div>
                 </div>
               </form>
-              <form method="dialog" className="modal-backdrop" >
-                <button>close</button>
+              <form method="dialog" className="modal-backdrop" onClick={closeDialog}>
+                <button  onClick={closeDialog} >close</button>
               </form>
             </dialog>
             

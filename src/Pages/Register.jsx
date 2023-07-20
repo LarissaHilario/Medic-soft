@@ -22,13 +22,13 @@ const Register = () => {
       useEffect(() => {
         const socket = io('ws://3.23.169.85:4000');
         socket.on('connect', () => {
-        console.log('Connected to server');
+      
         socket.send('¡Hola, servidor! Soy el cliente.');
         socket.send('¡Holaaaaaaaaaaaaaaaaaaaaaaa');
         socket.on("data",(data) => {
-        console.log(data)
+        
         const parsedData = JSON.parse(data);
-        console.log(parsedData)
+    
         setTemperature(parsedData.temperature);
         setHeartRate(parsedData.pulse); 
         setOxygenation(parsedData.oxygen);
@@ -51,7 +51,6 @@ const Register = () => {
     pulse: heartRate,
     oxygen: oxygenation
   };
-  console.log(sensorData)
   await axios.post("https://apipython.ddns.net/sensors",sensorData,{
     headers: {
       'Content-type': 'application/json',
@@ -60,15 +59,11 @@ const Register = () => {
   })
     
     .then((resp) => {     
-      const { data } = resp;
-      console.log(data)
-     
-      
+      const { data } = resp;     
     })
 
     .catch(({ response }) => {
       console.log(response.message);
-
     });
   }
 

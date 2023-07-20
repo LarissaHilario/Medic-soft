@@ -20,7 +20,6 @@ const SignUp = () => {
 
   const onOptionChange = e => {
     setAvatar(e.target.value)
-    console.log(e.target.value)
   }
 
   const handleChangeValue = (e) => {
@@ -37,7 +36,6 @@ const SignUp = () => {
     axiosInstance
       .get("photos")
       .then(({ data }) => {
-        console.log(data.message);
         setPosts(data.message);
       })
       .catch((err) => {
@@ -60,7 +58,7 @@ const SignUp = () => {
       lastname: state.lastname,
       photoUrl: avatar
     };
-    console.log(userData)
+
     await axiosInstance
       .post("create",userData
       )

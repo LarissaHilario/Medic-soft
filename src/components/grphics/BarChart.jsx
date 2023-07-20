@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const BarChart = () => {
  const weeklyTemp = useSelector((state) => state.weeklyTemps.weeklyTemp.weeklyTemp);
- console.log(weeklyTemp)
  const labels= weeklyTemp ? weeklyTemp.map(item => item.date) : [];
  const datos=  weeklyTemp ?  weeklyTemp.map(item => item.value) : [];
 

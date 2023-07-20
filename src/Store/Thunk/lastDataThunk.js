@@ -13,7 +13,7 @@ export const chargingData = ()=> {
         },
       })
         .then(({ data }) => {
-          console.log(data)
+        
           dispatch(
             addData({
               lastData:{
