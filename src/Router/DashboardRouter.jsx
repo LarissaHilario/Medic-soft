@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Historial from '../Pages/Historial';
 import Register from '../Pages/Register';
-import Reports from '../Pages/Reports';
 import Home from '../Pages/Home';
 import Viewer from '../components/PDF/Viewer';
 import { login } from '../Store/Slices/authSlice';

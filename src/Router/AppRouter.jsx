@@ -4,8 +4,8 @@ import DashBoardRoutes from "./DashboardRouter";
 import SignUp from "../Pages/SignUp";
 import Login from "../Pages/Login";
 import PublicRoutes from "./PublicRoutes";
-import { useDispatch, useSelector } from "react-redux";
-//import { chargingUsers } from "../Store/Thunk/userThunk";
+import { useSelector } from "react-redux";
+
 import { useEffect } from "react";
 import PrivateRoutes from "./PrivateRouter";
 
