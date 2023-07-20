@@ -15,7 +15,7 @@ export const chargingHistory = ()=> {
           console.log(data)
           dispatch(
             addData({
-                history:data
+                history:data.history
             })
             )
           })

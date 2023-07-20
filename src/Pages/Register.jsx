@@ -10,12 +10,14 @@ import Loader from "../components/Loader";
 import LoaderComponent from "../components/Loader";
 import { axiosInstancia } from "../Helpers/AxiosInstancia";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [temperature, setTemperature] = useState("");
   const [oxygenation, setOxygenation] = useState("");
   const [heartRate, setHeartRate] = useState("");
+  const dispatch=useDispatch()
 
       useEffect(() => {
         const socket = io('ws://3.23.169.85:4000');
@@ -39,6 +41,9 @@ const Register = () => {
         });
 
 
+        
+    
+
   const handleSubmit =async (e)=>{
     e.preventDefault();
     const sensorData = {
@@ -57,6 +62,8 @@ const Register = () => {
     .then((resp) => {     
       const { data } = resp;
       console.log(data)
+     
+      
     })
 
     .catch(({ response }) => {
@@ -75,7 +82,7 @@ const Register = () => {
         </div>
         <div className="grid h-20 mt-10 flex-grow place-items-center">
           <Navbar />
-          <div className="flex w-full h-[51rem]">
+          <div className="flex w-full h-[53rem]">
             <div className="grid bg-neutral  artboard  artboard-horizontal w-full h-full">
               <div className=" flex collapse-title text-4xl font-bold p-10 h-1 ">
                 Registro de signos vitales

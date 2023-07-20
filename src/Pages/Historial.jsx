@@ -11,8 +11,9 @@ const Historial = () => {
   const [recordatorio, setRecordatorio] = useState(true);
   const navigate = useNavigate()
   const [filter, setFilter] = useState('default');
-  const history = useSelector((state) => state.history.history.history.history)
+  const history = useSelector((state) => state.history.history.history)
   console.log(history)
+
   const handleNavigate = () => {
     navigate('/registro')
   }
@@ -108,6 +109,76 @@ const Historial = () => {
       }
     };
   }
+
+  if (!history) {
+    return(
+      <>
+      {recordatorio && (
+        <div className="alert alert-info">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span>Recuerda imprimir tus informes semanales y mensuales</span>
+          <button onClick={changeRecordatorio}>Cerrar</button>
+        </div>
+      )}
+      <div className="flex w-full overflow-hidden">
+        <div className="grid w-1flex-grow place-items-center">
+          <Drawer />
+        </div>
+        <div className="grid h-20 mt-10 flex-grow place-items-center">
+          <Navbar />
+          <div className="flex w-full h-[53rem] ">
+            <div className="grid bg-neutral  artboard  artboard-horizontal w-full h-full ">
+              <div className=" flex collapse-title text-4xl font-bold p-10 h-1 ">
+                Historial
+              </div>
+              <div className=" p-10 flex items-center gap-12">
+
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="input input-bordered w-80 input-primary"
+                  onChange={handleInput}
+                />
+
+
+                <select className="select select-bordered w-full max-w-xs select-primary"
+                  value={filter}
+                  onChange={handleChange}
+                >
+                  <option value="default" disabled>Filtros</option>
+                  <option value='temperature'>Temperatura</option>
+                  <option value='date'>Fecha</option>
+                  <option value='pulse'>Ritmo cardiaco</option>
+                  <option value='oxygen'>Oxigenación</option>
+                </select>
+
+
+                <button className="btn btn-outline btn-primary" onClick={handleNavigate}>
+                  Añadir registro
+                </button>
+                <button className="btn btn-outline btn-primary" onClick={handleMonth} >
+                  Imprimir informe mensual
+                </button>
+                <button className="btn btn-outline btn-primary" onClick={handleWeek}>
+                  Imprimir informe semanal
+                </button>
+
+              </div>
+
+
+
+              <Table></Table>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+    )
+      }
+ 
   return (
     <>
       {recordatorio && (
@@ -123,7 +194,7 @@ const Historial = () => {
         </div>
         <div className="grid h-20 mt-10 flex-grow place-items-center">
           <Navbar />
-          <div className="flex w-full h-[51rem] ">
+          <div className="flex w-full h-[53rem] ">
             <div className="grid bg-neutral  artboard  artboard-horizontal w-full h-full ">
               <div className=" flex collapse-title text-4xl font-bold p-10 h-1 ">
                 Historial
@@ -176,4 +247,4 @@ const Historial = () => {
   );
 };
 
-export default Historial;
+export default Historial
